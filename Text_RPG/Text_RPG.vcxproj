@@ -102,6 +102,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -123,7 +124,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Text_RPG.cpp" />
+    <ClCompile Include="Character\Character.cpp" />
+    <ClCompile Include="Game\Game.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="System\FileLoader.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Character\Character.h" />
+    <ClInclude Include="Game\Game.h" />
+    <ClInclude Include="System\FileLoader.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
