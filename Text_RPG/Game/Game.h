@@ -21,7 +21,6 @@ private:
 private:
 	bool mIsRunning;
 
-	Character* Player;
-
+	Character* mPlayer;
 };
 

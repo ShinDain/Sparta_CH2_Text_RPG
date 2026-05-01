@@ -5,7 +5,7 @@
 Game::Game()
 {
     mIsRunning = false;
-    Player = nullptr;
+    mPlayer = nullptr;
 }
 
 Game::~Game()
@@ -22,10 +22,10 @@ void Game::RunLoop()
 
 void Game::ShutDown()
 {
-    if (Player)
+    if (mPlayer)
     {
-        delete Player;
-        Player = nullptr;
+        delete mPlayer;
+        mPlayer = nullptr;
     }
 }
 
@@ -34,17 +34,17 @@ bool Game::Initialize()
     cout << "===========================================\n";
     cout << "   [ Dungeon Escape Text RPG ]\n";
     cout << "===========================================\n";
-    cout << "Enter your hero's name : ";
 
-    Player = new Character();
-    string playerName;
-    
-    cin >> playerName;
-    Player->SetName(playerName);
-    
-    mIsRunning = true;
+    bool result = true;
+    mPlayer = new Character();
+    if (mPlayer)
+    {
+        result = mPlayer->Initialize();
+        mPlayer->PrintStats();
+    }
 
-    return true;
+    mIsRunning = result;
+    return result;
 }
 
 void Game::ProcessInput()
@@ -52,11 +52,12 @@ void Game::ProcessInput()
     string Input = {};
     cin >> Input;
 
-    cout << "Input is " << Input << "\n";
-    cout << "Your name is " << Player->GetName() << "\n";
-
     if (Input == "quit")
     {
         mIsRunning = false;
+    }
+    else if (Input == "print")
+    {
+        mPlayer->PrintStats();
     }
 }
