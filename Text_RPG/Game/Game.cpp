@@ -3,6 +3,12 @@
 #include <vector>
 #include "../System/FileLoader.h"
 
+// State, Player, Monster, Map
+// 정보를 가지고 게임 흐름을 조정
+// 입력을 수신 후 전파
+// 유한 상태 머신
+
+
 Game::Game()
 {
     mIsRunning = false;
@@ -100,10 +106,18 @@ void Game::ProcessInput_Title(string input)
         cout << "게임 시작";
         break;
     case 1:
-        mPlayer->UseItem("HPPotion");
+    {
+        bool result = mPlayer->UseItem("HPPotion");
+        if (!result)
+            cout << "HPPotion이 부족합니다.";
+    }
         break;
     case 2:
-        mPlayer->UseItem("MPPotion");
+    {
+        bool result = mPlayer->UseItem("MPPotion");
+        if (!result)
+            cout << "MPPotion이 부족합니다.";
+    }
         break;
     default:
         cout << "잘못된 입력입니다.";
