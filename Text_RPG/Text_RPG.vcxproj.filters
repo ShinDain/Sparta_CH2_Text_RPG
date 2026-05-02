@@ -13,6 +13,15 @@
     <Filter Include="Source\System">
       <UniqueIdentifier>{eb663d35-009e-4e62-89c3-bf69a9cb5b7c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Item">
+      <UniqueIdentifier>{7c080e12-11b4-449f-bbf5-10f17f5280f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Component">
+      <UniqueIdentifier>{d256c852-02b2-4916-9d85-a737163a892d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\System\Event">
+      <UniqueIdentifier>{3e2db728-f93e-459d-8112-409240e03b16}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\Game.cpp">
@@ -27,6 +36,24 @@
     <ClCompile Include="Character\Character.cpp">
       <Filter>Source\Character</Filter>
     </ClCompile>
+    <ClCompile Include="Item\Item.cpp">
+      <Filter>Source\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\InventoryComponent.cpp">
+      <Filter>Source\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="System\Event\Event.cpp">
+      <Filter>Source\System\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="System\EventManager.cpp">
+      <Filter>Source\System</Filter>
+    </ClCompile>
+    <ClCompile Include="Item\HPPotion.cpp">
+      <Filter>Source\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="Item\MPPotion.cpp">
+      <Filter>Source\Item</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game\Game.h">
@@ -37,6 +64,24 @@
     </ClInclude>
     <ClInclude Include="Character\Character.h">
       <Filter>Source\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Item\Item.h">
+      <Filter>Source\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\InventoryComponent.h">
+      <Filter>Source\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="System\Event\Event.h">
+      <Filter>Source\System\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="System\EventManager.h">
+      <Filter>Source\System</Filter>
+    </ClInclude>
+    <ClInclude Include="Item\HPPotion.h">
+      <Filter>Source\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="Item\MPPotion.h">
+      <Filter>Source\Item</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

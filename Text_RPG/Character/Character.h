@@ -1,5 +1,6 @@
 #pragma once
 #include <string>;
+#include "../Component/InventoryComponent.h"
 
 using namespace std;
 
@@ -19,12 +20,16 @@ public:
 
 public:
 	Character();
-	Character(const string& InName);
 	virtual ~Character();
 
 	bool Initialize();
 
 	void PrintStats();
+
+	void AcquireItem(string itemName, int amount);
+	bool UseItem(string itemName);
+	void RecoveryHP(int amount);
+	void RecoveryMP(int amount);
 protected:
 	bool InitializeName();
 	bool InitializeTwoStats(STAT_INDEX StatIndex1, STAT_INDEX StatIndex2);
@@ -34,6 +39,8 @@ protected:
 	string mName;
 
 	int mStats[SIZE];
+
+	InventoryComponent* mInventoryComp;
 
 public:
 	string GetName() const { return mName; }

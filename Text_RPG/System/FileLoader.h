@@ -1,9 +1,12 @@
 #pragma once
-#include <filesystem>
+#include <string>
+#include <vector>
+
+using namespace std;
 
 class FileLoader
 {
 public:
-	//virtual void Load(const std::string& filePath);
+	static bool Load(const string& filePath, vector<string>& outStrings);
 };
 

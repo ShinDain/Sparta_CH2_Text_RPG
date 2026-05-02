@@ -17,9 +17,13 @@ private:
 	//void Update(float ElapsedTime);
 	//void Render();
 	void ProcessInput();
+	
+	void LoopTitle();
+	void ProcessInput_Title(string input);
 
 private:
 	bool mIsRunning;
+	bool mIsGameStarted;
 
 	Character* mPlayer;
 };

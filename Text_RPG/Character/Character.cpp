@@ -3,20 +3,23 @@
 
 Character::Character()
 {
-}
-
-Character::Character(const string& InName)
-	: mName(InName)
-{
+	mInventoryComp = nullptr;
 }
 
 Character::~Character()
 {
+	delete mInventoryComp;
+	mInventoryComp = nullptr;	
 }
 
 bool Character::Initialize()
 {
 	bool result = true;
+
+	mInventoryComp = new InventoryComponent(this);
+	if (mInventoryComp == nullptr)
+		return false;
+	mInventoryComp->Initialize();
 
 	result = InitializeName();
 
@@ -36,6 +39,30 @@ void Character::PrintStats()
 	cout << "HP: " << mStats[(int)STAT_INDEX::HP] << "    MP : " << mStats[(int)STAT_INDEX::MP] << "\n";
 	cout << "공격력: " << mStats[(int)STAT_INDEX::ATTACK] << "    방어력 : " << mStats[(int)STAT_INDEX::DEFENCE] << "\n";
 	cout << "====================================\n";
+}
+
+void Character::AcquireItem(string itemName, int amount)
+{
+	mInventoryComp->AddItem(itemName, amount);
+}
+
+bool Character::UseItem(string itemName)
+{
+	return mInventoryComp->UseItem(itemName);
+}
+
+void Character::RecoveryHP(int amount)
+{
+	mStats[(int)STAT_INDEX::HP] += amount;
+
+	cout << "HP포션을 사용하여, HP를 20만큼 회복하였습니다.";
+}
+
+void Character::RecoveryMP(int amount)
+{
+	mStats[(int)STAT_INDEX::MP] += amount;
+
+	cout << "MP포션을 사용하여, MP를 20만큼 회복하였습니다.";
 }
 
 bool Character::InitializeName()
