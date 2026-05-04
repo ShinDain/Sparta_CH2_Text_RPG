@@ -1,10 +1,19 @@
 #pragma once
 #include "../CommonInclude.h"
 #include "../Character/Character.h"
-#include "../Character/Player.h"
 
 class Game
 {
+public :
+	enum class GameState
+	{
+		Create,
+		Title,
+		Combat,
+		CombatEnd,
+		None,
+	};
+
 public:
 	Game();
 	virtual ~Game();
@@ -13,18 +22,19 @@ public:
 	void RunLoop();
 	void ShutDown();
 
-private:
-	//void Update(float ElapsedTime);
-	//void Render();
-	void ProcessInput();
-	
+private:	
 	void LoopTitle();
-	void ProcessInput_Title(string input);
+	void ProcessInput_Title();
 
+	void ProcessInput_Combat();
+
+	void PrintCombatEnd();
 private:
 	bool mIsRunning;
-	bool mIsGameStarted;
 
-	Player* mPlayer;
+	GameState mState;
+
+	class Player* mPlayer;
+	class Monster* mMonster;
 };
 

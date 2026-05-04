@@ -19,12 +19,11 @@ bool Thief::Initialize()
 	mAttack += 10;
 	cout << "도적으로 전직하였습니다! (MP + 20, 공격력 + 10)\n";
 
-	Attack();
-
 	return result;
 }
 
-void Thief::Attack()
+void Thief::Attack(Character* target)
 {
-	cout << "단검으로 찔렀다!";
+	cout << "단검으로 찔렀다!\n";
+	target->Hit(mAttack);
 }

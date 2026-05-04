@@ -11,6 +11,6 @@ public:
 
 	virtual bool Initialize() override;
 
-	virtual void Attack() override;
+	virtual void Attack(Character* target) override;
 
 };

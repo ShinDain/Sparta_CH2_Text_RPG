@@ -18,12 +18,11 @@ bool Magician::Initialize()
 	mMP += 30;
 	cout << "마법사로 전직하였습니다! (MP + 30)\n";
 
-	Attack();
-
 	return result;
 }
 
-void Magician::Attack()
+void Magician::Attack(Character* target)
 {
-	cout << "화염구를 발사했다!";
+	cout << "화염구를 발사했다!\n";
+	target->Hit(mAttack);
 }

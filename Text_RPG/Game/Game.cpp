@@ -2,10 +2,13 @@
 #include <iostream>
 #include <vector>
 #include "../System/FileLoader.h"
+#include "../Character/Player.h"
 #include "../Character/Class/Warrior.h"
 #include "../Character/Class/Thief.h"
 #include "../Character/Class/Magician.h"
 #include "../Character/Class/Archer.h"
+
+#include "../Character/Monster.h"
 
 // State, Player, Monster, Map
 // 정보를 가지고 게임 흐름을 조정
@@ -15,8 +18,11 @@
 Game::Game()
 {
     mIsRunning = false;
-    mIsGameStarted = false;
     mPlayer = nullptr;
+
+	mMonster = nullptr;
+
+	mState = GameState::Create;
 }
 
 Game::~Game()
@@ -25,13 +31,28 @@ Game::~Game()
 
 void Game::RunLoop()
 {
-    //while (mIsRunning)
+    while (mIsRunning)
     {
-        while (!mIsGameStarted)
-        {
-            LoopTitle();
-            ProcessInput();
-        }
+		switch (mState)
+		{
+		case Game::GameState::Create:
+			Initialize();
+			break;
+		case Game::GameState::Title:
+			LoopTitle();
+			ProcessInput_Title();
+			break;
+		case Game::GameState::Combat:
+			ProcessInput_Combat();
+			break;
+		case Game::GameState::CombatEnd:
+			PrintCombatEnd();
+			break;
+		case Game::GameState::None:
+			break;
+		default:
+			break;
+		}
     }
 }
 
@@ -42,6 +63,12 @@ void Game::ShutDown()
         delete mPlayer;
         mPlayer = nullptr;
     }
+
+	if (mMonster)
+	{
+		delete mMonster;
+		mMonster = nullptr;
+	}
 }
 
 bool Game::Initialize()
@@ -108,32 +135,21 @@ bool Game::Initialize()
     {
         result = mPlayer->Initialize();
         mPlayer->PrintStats();
+		cout << "\nHP 포션 5개, MP 포션 5개가 기본 지급되었습니다.\n";
+
+		mPlayer->AcquireItem("HPPotion", 5);
+		mPlayer->AcquireItem("MPPotion", 5);
     }
 
-    cout << "\nHP 포션 5개, MP 포션 5개가 기본 지급되었습니다.\n";
-
-    mPlayer->AcquireItem("HPPotion", 5);
-    mPlayer->AcquireItem("MPPotion", 5);
-
+	mMonster = new Monster("Slime", 30, 0, 20, 10);
+	if (mMonster)
+	{
+		mMonster->Initialize();
+	}
+    
     mIsRunning = result;
+	mState = GameState::Title;
     return result;
-}
-
-void Game::ProcessInput()
-{
-    string input = {};
-    cin >> input;
-
-    if (input == "quit")
-    {
-        mIsRunning = false;
-    }
-    else if (input == "print")
-    {
-        mPlayer->PrintStats();
-    }
-
-    ProcessInput_Title(input);
 }
 
 void Game::LoopTitle()
@@ -149,15 +165,18 @@ void Game::LoopTitle()
     }
 }
 
-void Game::ProcessInput_Title(string input)
+void Game::ProcessInput_Title()
 {
+	string input = {};
+	cin >> input;
+
     int select = stoi(input);
 
     switch (select)
     {
     case 0:
-        mIsGameStarted = true;
         cout << "게임을 시작합니다.\n";
+		mState = GameState::Combat;
         break;
     case 1:
     {
@@ -192,5 +211,51 @@ void Game::ProcessInput_Title(string input)
         cout << "잘못된 입력입니다.\n";
         break;
     }
+}
 
+void Game::ProcessInput_Combat()
+{
+	int input = -1;
+
+	while (input != 1)
+	{
+		cout << "--- 플레이어 턴 ---\n";
+		cout << "1. 공격\n";
+		cout << "선택: ";
+		cin >> input;
+		if (input != 1)
+		{
+			cout << "잘못된 입력입니다.\n";
+			continue;
+		}
+		mPlayer->Attack(mMonster);
+	}
+
+	if (mMonster->IsAlive())
+	{
+		cout << "--- 몬스터 턴 ---\n";
+		mMonster->Attack(mPlayer);
+	}
+
+	if (mPlayer->IsDead() || mMonster->IsDead())
+	{
+		mState = GameState::CombatEnd;
+	}
+}
+
+void Game::PrintCombatEnd()
+{
+	if (mPlayer->IsAlive())
+	{
+		cout << "★ 전투 승리!\n";
+		cout << "-> " << mMonster->GetName() << "의 " << mMonster->GetDropItemName() << " 획득!";
+	}
+	else
+	{
+		cout << "★ 전투 패배\n";
+		cout << "";
+		mIsRunning = false;
+	}
+
+	mState = GameState::Title;
 }

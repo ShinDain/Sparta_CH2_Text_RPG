@@ -34,10 +34,9 @@ public:
 	virtual bool Initialize() override;
 	virtual void PrintStats() override;
 
-	virtual void Attack() = 0;
-
 	void AcquireItem(string itemName, int amount);
 	bool UseItem(string itemName);
+
 protected:
 	Class mClass;
 

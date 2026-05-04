@@ -15,16 +15,15 @@ bool Archer::Initialize()
 
 	mClass.job = Job::Archer;
 	mClass.name = "궁수";
-	mHP -= 10;
+	mHP -= 45;
 	mAttack += 20;
-	cout << "궁수로 전직하였습니다! (HP - 10, 공격력 + 20)\n";
-
-	Attack();
+	cout << "궁수로 전직하였습니다! (HP - 45, 공격력 + 20)\n";
 
 	return result;
 }
 
-void Archer::Attack()
+void Archer::Attack(Character* target)
 {
-	cout << "화살을 쏘았다!";
+	cout << "화살을 쏘았다!\n";
+	target->Hit(mAttack);
 }

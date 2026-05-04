@@ -5,6 +5,7 @@
 Character::Character(string name, int hp, int mp, int Attack, int defence)
 	:mName(name), mHP(hp), mMP(mp), mAttack(Attack), mDefence(defence), mLevel(1)
 {
+	mIsDead = false;
 }
 
 Character::~Character()
@@ -40,4 +41,24 @@ void Character::RecoveryMP(int amount)
 	mMP += amount;
 
 	cout << "MP포션을 사용하여, MP를 20만큼 회복하였습니다.\n";
+}
+
+void Character::Hit(int damage)
+{
+	int resultDamage = max((damage - mDefence), 1);
+	int preHP = mHP;
+	int postHP = mHP - resultDamage;
+	mHP = max(postHP, 0);
+
+	cout << mName << "에게 " << resultDamage << "데미지!\n";
+	cout << mName << " HP: " << preHP << " -> " << postHP;
+	if (postHP <= 0)
+	{
+		cout << " (사망)\n";
+		mIsDead = true;
+	}
+	else
+	{
+		cout << endl;
+	}
 }

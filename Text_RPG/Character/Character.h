@@ -15,6 +15,10 @@ public:
 
 	void RecoveryHP(int amount);
 	void RecoveryMP(int amount);
+
+	virtual void Attack(Character* target) = 0;
+	virtual void Hit(int damage);
+
 protected:
 	string mName;
 
@@ -23,6 +27,8 @@ protected:
 	int mMP;
 	int mAttack;
 	int mDefence;
+
+	bool mIsDead;
 
 public:
 	string GetName() const { return mName; }
@@ -34,5 +40,8 @@ public:
 
 	void SetAttack(int InValue) { mAttack = InValue; }
 	void SetDefence(int InValue) { mDefence = InValue; }
+
+	bool IsDead() { return mIsDead; }
+	bool IsAlive() { return !mIsDead; }
 };
 

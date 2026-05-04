@@ -129,6 +129,7 @@
     <ClCompile Include="Character\Class\Magician.cpp" />
     <ClCompile Include="Character\Class\Thief.cpp" />
     <ClCompile Include="Character\Class\Warrior.cpp" />
+    <ClCompile Include="Character\Monster.cpp" />
     <ClCompile Include="Character\Player.cpp" />
     <ClCompile Include="Component\InventoryComponent.cpp" />
     <ClCompile Include="Game\Game.cpp" />
@@ -146,6 +147,7 @@
     <ClInclude Include="Character\Class\Magician.h" />
     <ClInclude Include="Character\Class\Thief.h" />
     <ClInclude Include="Character\Class\Warrior.h" />
+    <ClInclude Include="Character\Monster.h" />
     <ClInclude Include="Character\Player.h" />
     <ClInclude Include="CommonInclude.h" />
     <ClInclude Include="Component\InventoryComponent.h" />

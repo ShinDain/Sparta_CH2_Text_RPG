@@ -19,12 +19,11 @@ bool Warrior::Initialize()
 	mDefence += 10;
 	cout << "전사로 전직하였습니다! (HP + 20, 방어력 + 10)\n";
 
-	Attack();
-
 	return result;
 }
 
-void Warrior::Attack()
+void Warrior::Attack(Character* target)
 {
-	cout << "검으로 내리쳤다!";
+	cout << "검으로 내리쳤다!\n";
+	target->Hit(mAttack);
 }
