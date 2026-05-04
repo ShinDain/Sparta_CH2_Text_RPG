@@ -23,6 +23,7 @@ protected:
 	string mName;
 
 	int mLevel;
+	int mMaxHP;
 	int mHP;
 	int mMP;
 	int mAttack;

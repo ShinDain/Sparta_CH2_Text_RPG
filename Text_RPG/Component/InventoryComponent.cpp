@@ -1,7 +1,7 @@
 #include "InventoryComponent.h"
 #include "../Item/Item.h"
-#include "../Item/HPPotion.h"
-#include "../Item/MPPotion.h"
+//#include "../Item/HPPotion.h"
+//#include "../Item/MPPotion.h"
 
 InventoryComponent::InventoryComponent(Character* owner)
 	:mOwner (owner)
@@ -23,11 +23,11 @@ InventoryComponent::~InventoryComponent()
 
 void InventoryComponent::Initialize()
 {
-	InitItemData<HPPotion>();
-	InitItemData<MPPotion>();
+	//InitItemData<HPPotion>();
+	//InitItemData<MPPotion>();
 }
 
-ItemData* InventoryComponent::FindItem(string itemName)
+InventoryEntry* InventoryComponent::FindItem(string itemName)
 {
 	if (mItems.find(itemName) != mItems.end())
 	{
@@ -39,14 +39,14 @@ ItemData* InventoryComponent::FindItem(string itemName)
 
 bool InventoryComponent::UseItem(string itemName)
 {
-	ItemData* itemData = FindItem(itemName);
+	InventoryEntry* inventoryEntry = FindItem(itemName);
 
-	if (itemData)
+	if (inventoryEntry)
 	{
-		if (itemData->Amount > 0)
+		if (inventoryEntry->Amount > 0)
 		{
-			itemData->Instance->Active(mOwner);
-			itemData->Amount--;
+			inventoryEntry->Instance->Active(mOwner);
+			inventoryEntry->Amount--;
 
 			return true;
 		}
@@ -55,12 +55,63 @@ bool InventoryComponent::UseItem(string itemName)
 	return false;
 }
 
-void InventoryComponent::AddItem(string itemName, int amount)
+void InventoryComponent::AddItem(ItemData data, int amount)
 {
-	ItemData* itemData = FindItem(itemName);
+	InventoryEntry* inventoryEntry = FindItem(data.Name);
 
-	if (itemData)
+	if (inventoryEntry)
 	{
-		itemData->Amount += amount;
+		inventoryEntry->Amount += amount;
 	}
+	else
+	{
+		InventoryEntry* newEntry = InitItemEntry(data);
+		if (newEntry)
+		{
+			newEntry->Amount += amount;
+		}
+	}
+}
+
+InventoryEntry* InventoryComponent::InitItemEntry(ItemData data)
+{
+	string itemName = data.Name;
+	int itemPrice = data.Price;
+
+	InventoryEntry* itemEntry = new InventoryEntry();
+	if (itemEntry)
+	{
+		itemEntry->Instance = new Item(itemName, itemPrice);
+		if (itemEntry->Instance)
+		{
+			itemEntry->Amount = 0;
+			mItems.emplace(itemName, itemEntry);
+		}
+	}
+	return itemEntry;
+}
+
+void InventoryComponent::PrintInventory()
+{
+	int inventoryIdx = 0;
+	for (const auto& pair : mItems)
+	{
+		// +1 하여 1부터 출력한다.
+		cout << (1 + inventoryIdx) << ". ";
+		InventoryEntry* Entry = pair.second;
+		Entry->Print();
+
+		++inventoryIdx;
+	}
+}
+
+int InventoryComponent::GetItemAmount(string itemName)
+{
+	InventoryEntry* Entry = FindItem(itemName);
+	if (Entry)
+	{
+		return Entry->Amount;
+	}
+
+	return 0;
 }

@@ -35,12 +35,11 @@ void Game::RunLoop()
     {
 		switch (mState)
 		{
-		case Game::GameState::Create:
-			Initialize();
+		case Game::GameState::Village:
+			ProcessInput_Village();
 			break;
-		case Game::GameState::Title:
-			LoopTitle();
-			ProcessInput_Title();
+		case Game::GameState::MainMenu:
+			ProcessInput_MainMenu();
 			break;
 		case Game::GameState::Combat:
 			ProcessInput_Combat();
@@ -137,8 +136,11 @@ bool Game::Initialize()
         mPlayer->PrintStats();
 		cout << "\nHP 포션 5개, MP 포션 5개가 기본 지급되었습니다.\n";
 
-		mPlayer->AcquireItem("HPPotion", 5);
-		mPlayer->AcquireItem("MPPotion", 5);
+		ItemData hpPotionData("HPPotion", 50);
+		ItemData mpPotionData("MPPotion", 50);
+		
+		mPlayer->AcquireItem(hpPotionData, 5);
+		mPlayer->AcquireItem(mpPotionData, 5);
     }
 
 	mMonster = new Monster("Slime", 30, 0, 20, 10);
@@ -148,25 +150,19 @@ bool Game::Initialize()
 	}
     
     mIsRunning = result;
-	mState = GameState::Title;
+	mState = GameState::Village;
     return result;
 }
 
-void Game::LoopTitle()
+void Game::ProcessInput_Village()
 {
-    //while (true)
-    {
-        cout << "\n============================================\n";
-        cout << "< 캐릭터 강화 >\n";
-        cout << "1. HP UP    2. MP UP    3. 공격력 2배\n";
-        cout << "4. 방어력 2배  5. 현재 능력치  0. 게임 시작\n";
-        cout << "============================================\n";
-        cout << "번호를 선택해주세요 : ";
-    }
-}
+	cout << "\n============= 마을 ===============\n";
+	cout << "< 캐릭터 강화 >\n";
+	cout << "1. HP UP    2. MP UP    3. 공격력 2배\n";
+	cout << "4. 방어력 2배  5. 현재 능력치  0. 게임 시작\n";
+	cout << "====================================\n";
+	cout << "번호를 선택해주세요 : ";
 
-void Game::ProcessInput_Title()
-{
 	string input = {};
 	cin >> input;
 
@@ -183,13 +179,21 @@ void Game::ProcessInput_Title()
         bool result = mPlayer->UseItem("HPPotion");
         if (!result)
             cout << "HPPotion이 부족합니다.\n";
+		else
+		{
+			mPlayer->RecoveryHP(20);
+		}
     }
         break;
     case 2:
     {
         bool result = mPlayer->UseItem("MPPotion");
         if (!result)
-            cout << "MPPotion이 부족합니다.\n";
+            cout << "MPPotion이 부족합니다.\n";		
+		else
+		{
+			mPlayer->RecoveryMP(20);
+		}
     }
         break;
     case 3:
@@ -211,6 +215,44 @@ void Game::ProcessInput_Title()
         cout << "잘못된 입력입니다.\n";
         break;
     }
+}
+
+void Game::ProcessInput_MainMenu()
+{
+	cout << "\n============= 메뉴 ===============\n";
+	cout << "0. 마을로\n";
+	cout << "1. 던전 입장\n";
+	cout << "2. 인벤토리\n";
+	cout << "3. 게임 종료\n";
+	cout << "===================================\n";
+	cout << "번호를 선택해주세요 : ";
+
+	int input = 0;
+	cin >> input;
+	switch (input)
+	{
+	case 0:
+		cout << "마을로 돌아갑니다.\n";
+		mState = GameState::Village;
+		break;
+	case 1:
+		cout << "다시 전투에 돌입합니다.\n";
+		InitCombat();
+		mState = GameState::Combat;
+		break;
+	case 2:
+		mPlayer->PrintInventory();
+		break;
+	case 3:
+		cout << "게임을 종료합니다.\n";
+		mIsRunning = false;
+		break;
+	default:
+		cout << "잘못된 입력입니다. 다시 입력해주세요.\n";
+		break;
+	}
+	
+
 }
 
 void Game::ProcessInput_Combat()
@@ -249,6 +291,7 @@ void Game::PrintCombatEnd()
 	{
 		cout << "★ 전투 승리!\n";
 		cout << "-> " << mMonster->GetName() << "의 " << mMonster->GetDropItemName() << " 획득!";
+		mPlayer->AcquireItem(mMonster->GetDropItemData(), 1);
 	}
 	else
 	{
@@ -257,5 +300,10 @@ void Game::PrintCombatEnd()
 		mIsRunning = false;
 	}
 
-	mState = GameState::Title;
+	mState = GameState::MainMenu;
+}
+
+void Game::InitCombat()
+{
+	mMonster->Initialize();
 }

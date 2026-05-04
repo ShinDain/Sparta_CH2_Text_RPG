@@ -3,9 +3,9 @@
 #include "Player.h"
 
 Character::Character(string name, int hp, int mp, int Attack, int defence)
-	:mName(name), mHP(hp), mMP(mp), mAttack(Attack), mDefence(defence), mLevel(1)
+	:mName(name), mMaxHP(hp), mHP(hp), mMP(mp), mAttack(Attack), mDefence(defence), mLevel(1)
 {
-	mIsDead = false;
+	
 }
 
 Character::~Character()
@@ -15,6 +15,7 @@ Character::~Character()
 bool Character::Initialize()
 {
 	bool result = true;
+	mIsDead = false;
 
 	return result;
 }

@@ -4,11 +4,22 @@
 Monster::Monster(string name, int hp, int mp, int Attack, int defence)
 	: Character(name, hp, mp, Attack, defence)
 {
-	mDropItemName = "끈적한 젤리";
+	ItemData dropItemData("끈적한 젤리", 30);
+	mDropItemData = dropItemData;
 }
 
 Monster::~Monster()
 {
+}
+
+bool Monster::Initialize()
+{
+	bool result = true;
+	mIsDead = false;
+	mHP = mMaxHP;
+
+
+	return result;
 }
 
 void Monster::PrintStats()

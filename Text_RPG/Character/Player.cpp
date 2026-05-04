@@ -32,9 +32,14 @@ void Player::PrintStats()
 	cout << "------------------------------------\n";
 }
 
-void Player::AcquireItem(string itemName, int amount)
+void Player::PrintInventory()
 {
-	mInventoryComp->AddItem(itemName, amount);
+	mInventoryComp->PrintInventory();
+}
+
+void Player::AcquireItem(ItemData data, int amount)
+{
+	mInventoryComp->AddItem(data, amount);
 }
 
 bool Player::UseItem(string itemName)

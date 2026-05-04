@@ -1,6 +1,7 @@
 #pragma once
 #include "../CommonInclude.h"
 #include "../Character/Character.h"
+#include <functional>
 
 class Game
 {
@@ -8,7 +9,8 @@ public :
 	enum class GameState
 	{
 		Create,
-		Title,
+		Village,
+		MainMenu,
 		Combat,
 		CombatEnd,
 		None,
@@ -22,13 +24,14 @@ public:
 	void RunLoop();
 	void ShutDown();
 
-private:	
-	void LoopTitle();
-	void ProcessInput_Title();
-
+private:
+	void ProcessInput_Village();
+	void ProcessInput_MainMenu();
 	void ProcessInput_Combat();
 
 	void PrintCombatEnd();
+
+	void InitCombat();
 private:
 	bool mIsRunning;
 

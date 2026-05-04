@@ -6,7 +6,7 @@
 class Player : public Character
 {
 public:
-	enum class Job
+	enum class PlayerJob
 	{
 		Novice,
 		Warrior,
@@ -18,11 +18,11 @@ public:
 
 	struct Class
 	{
-		Job job;
-		string name;
+		PlayerJob Job;
+		string Name;
 
 		Class()
-			: job(Job::Novice), name("초보자") 
+			: Job(PlayerJob::Novice), Name("초보자")
 		{}
 	};
 
@@ -34,15 +34,16 @@ public:
 	virtual bool Initialize() override;
 	virtual void PrintStats() override;
 
-	void AcquireItem(string itemName, int amount);
+	void AcquireItem(ItemData data, int amount);
 	bool UseItem(string itemName);
 
+	void PrintInventory();
 protected:
 	Class mClass;
 
 	InventoryComponent* mInventoryComp;
 
 public:
-	virtual string GetClassName() { return mClass.name; }
+	virtual string GetClassName() { return mClass.Name; }
 };
 

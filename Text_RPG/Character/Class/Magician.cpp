@@ -13,8 +13,8 @@ bool Magician::Initialize()
 {
 	bool result = Player::Initialize();
 
-	mClass.job = Job::Magician;
-	mClass.name = "마법사";
+	mClass.Job = PlayerJob::Magician;
+	mClass.Name = "마법사";
 	mMP += 30;
 	cout << "마법사로 전직하였습니다! (MP + 30)\n";
 

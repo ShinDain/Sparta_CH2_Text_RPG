@@ -13,8 +13,8 @@ bool Thief::Initialize()
 {
 	bool result = Player::Initialize();
 
-	mClass.job = Job::Thief;
-	mClass.name = "도적";
+	mClass.Job = PlayerJob::Thief;
+	mClass.Name = "도적";
 	mMP += 20;
 	mAttack += 10;
 	cout << "도적으로 전직하였습니다! (MP + 20, 공격력 + 10)\n";

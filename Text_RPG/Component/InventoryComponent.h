@@ -7,15 +7,19 @@ using namespace std;
 
 class Character;
 
-struct ItemData
+struct InventoryEntry
 {
-	string Name;
 	Item* Instance;
 	int Amount;
 
-	ItemData()
-		:Name(), Instance(nullptr), Amount(0)
+	InventoryEntry()
+		:Instance(nullptr), Amount(0)
 	{}
+
+	void Print()
+	{
+		cout << Instance->GetName() << " (" << Instance->GetPrice() << "G) " << Amount << "개\n";
+	}
 };
 
 class InventoryComponent
@@ -26,31 +30,37 @@ public:
 	virtual ~InventoryComponent();
 
 	void Initialize();
-	template<typename T> 
-	ItemData* InitItemData();
 
-	ItemData* FindItem(string itemName);
+	InventoryEntry* FindItem(string itemName);
 	bool UseItem(string itemName);
-	void AddItem(string itemName, int amount);
+	void AddItem(ItemData data, int amount);
 
+	InventoryEntry* InitItemEntry(ItemData data);
+
+	void PrintInventory();
+
+	//template<typename T> 
+	//ItemData* InitItemData();
 private:
-	map<string, ItemData*> mItems;
+	map<string, InventoryEntry*> mItems;
 
 	Character* mOwner;
+public:
+	int GetItemAmount(string itemName);
 };
 
-template<typename T>
-inline ItemData* InventoryComponent::InitItemData()
-{
-	ItemData* itemData = new ItemData();
-	itemData->Instance = new T();
-	if (itemData->Instance)
-	{
-		itemData->Name = itemData->Instance->GetName();
-		itemData->Amount = 0;
-	}
-
-	mItems.emplace(itemData->Name, itemData);
-
-	return itemData;
-}
+//template<typename T>
+//inline ItemData* InventoryComponent::InitItemData()
+//{
+//	ItemData* itemData = new ItemData();
+//	itemData->Instance = new T();
+//	if (itemData->Instance)
+//	{
+//		itemData->Name = itemData->Instance->GetName();
+//		itemData->Amount = 0;
+//	}
+//
+//	mItems.emplace(itemData->Name, itemData);
+//
+//	return itemData;
+//}
