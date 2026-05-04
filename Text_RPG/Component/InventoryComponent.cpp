@@ -1,10 +1,8 @@
 #include "InventoryComponent.h"
 #include "../Item/Item.h"
-//#include "../Item/HPPotion.h"
-//#include "../Item/MPPotion.h"
 
-InventoryComponent::InventoryComponent(Character* owner)
-	:mOwner (owner)
+InventoryComponent::InventoryComponent(Character* owner, string name)
+	:Component(owner, name)
 {
 }
 
@@ -23,8 +21,7 @@ InventoryComponent::~InventoryComponent()
 
 void InventoryComponent::Initialize()
 {
-	//InitItemData<HPPotion>();
-	//InitItemData<MPPotion>();
+
 }
 
 InventoryEntry* InventoryComponent::FindItem(string itemName)

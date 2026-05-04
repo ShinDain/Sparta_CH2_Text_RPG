@@ -15,9 +15,9 @@ bool Archer::Initialize()
 
 	mClass.Job = PlayerJob::Archer;
 	mClass.Name = "궁수";
-	mHP -= 45;
+	mHP -= 10;
 	mAttack += 20;
-	cout << "궁수로 전직하였습니다! (HP - 45, 공격력 + 20)\n";
+	cout << "궁수로 전직하였습니다! (HP - 10, 공격력 + 20)\n";
 
 	return result;
 }

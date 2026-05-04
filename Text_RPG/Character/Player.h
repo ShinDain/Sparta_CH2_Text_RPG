@@ -1,7 +1,9 @@
 #pragma once
 #include "../CommonInclude.h"
 #include "Character.h"
-#include "../Component/InventoryComponent.h"
+#include "../Component/Component.h"
+
+struct ItemData;
 
 class Player : public Character
 {
@@ -38,12 +40,41 @@ public:
 	bool UseItem(string itemName);
 
 	void PrintInventory();
+
+	template<typename T>
+	T* AddComponent(string compName);
+	template<typename T>
+	T* FindComponent(string compName);
+
 protected:
 	Class mClass;
 
-	InventoryComponent* mInventoryComp;
-
+	vector<Component*> mComponents;
 public:
 	virtual string GetClassName() { return mClass.Name; }
 };
 
+template<typename T>
+inline T* Player::AddComponent(string compName)
+{
+	T* newComp = new T(this, compName);
+	if (newComp)
+	{
+		mComponents.emplace_back(newComp);
+		return newComp;
+	}
+
+	return nullptr;
+}
+
+template<typename T>
+inline T* Player::FindComponent(string compName)
+{
+	for (const auto& comp : mComponents)
+	{
+		if (compName == comp->GetName())
+			return dynamic_cast<T*>(comp);
+	}
+
+	return nullptr;
+}

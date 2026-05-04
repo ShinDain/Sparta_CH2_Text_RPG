@@ -9,10 +9,11 @@ public :
 	enum class GameState
 	{
 		Create,
-		Village,
+		SetStat,
 		MainMenu,
 		Combat,
 		CombatEnd,
+		Alchemy,
 		None,
 	};
 
@@ -28,6 +29,7 @@ private:
 	void ProcessInput_Village();
 	void ProcessInput_MainMenu();
 	void ProcessInput_Combat();
+	void ProcessInput_Alchemy();
 
 	void PrintCombatEnd();
 
@@ -38,6 +40,8 @@ private:
 	GameState mState;
 
 	class Player* mPlayer;
-	class Monster* mMonster;
+	class Monster* mMonster[2];
+
+	int mCurMonsterIdx;
 };
 

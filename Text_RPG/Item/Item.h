@@ -3,6 +3,28 @@
 
 class Character;
 
+struct Recipe
+{
+	vector<pair<string, int>> ingredients;
+	string result;
+
+	void Print()
+	{
+		cout << "-> " << result << " (";
+		string sep = "";
+		for (const auto& pair : ingredients)
+		{
+			string name = pair.first;
+			int amount = pair.second;
+
+			cout << sep;
+			cout << name << " x" << amount;
+			sep = ", ";
+		}
+		cout << ")\n";
+	}
+};
+
 struct ItemData
 {
 	string Name;

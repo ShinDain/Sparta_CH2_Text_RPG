@@ -1,25 +1,36 @@
 #include "Player.h"
+#include "../Component/Component.h"
 
+#include "../Component/InventoryComponent.h"
+#include "../Component/AlchemyComponent.h"
 
 Player::Player(string name, int hp, int mp, int Attack, int defence)
 	:Character(name, hp, mp, Attack, defence)
 {
-	mInventoryComp = nullptr;
+
 }
 
 Player::~Player()
 {
-	delete mInventoryComp;
-	mInventoryComp = nullptr;
+	for (Component* component : mComponents)
+	{
+		delete component;
+		component = nullptr;
+	}
 }
 
 bool Player::Initialize()
 {
-	mInventoryComp = new InventoryComponent(this);
-	if (mInventoryComp == nullptr)
-		return false;
-	mInventoryComp->Initialize();
+	AddComponent<InventoryComponent>("Inventory");
+	AddComponent<AlchemyComponent>("Alchemy");
 
+	for (Component* component : mComponents)
+	{
+		if (component)
+		{
+			component->Initialize();
+		}
+	}
 
 	return true;
 }
@@ -34,15 +45,28 @@ void Player::PrintStats()
 
 void Player::PrintInventory()
 {
-	mInventoryComp->PrintInventory();
+	InventoryComponent* inventoryComp = FindComponent<InventoryComponent>("Inventory");
+	if (inventoryComp)
+	{
+		inventoryComp->PrintInventory();
+	}
 }
 
 void Player::AcquireItem(ItemData data, int amount)
 {
-	mInventoryComp->AddItem(data, amount);
+	InventoryComponent* inventoryComp = FindComponent<InventoryComponent>("Inventory");
+	if (inventoryComp)
+	{
+		inventoryComp->AddItem(data, amount);
+	}
 }
 
 bool Player::UseItem(string itemName)
 {
-	return mInventoryComp->UseItem(itemName);
+	InventoryComponent* inventoryComp = FindComponent<InventoryComponent>("Inventory");
+	if (inventoryComp)
+	{
+		return inventoryComp->UseItem(itemName);
+	}
+	return false;
 }

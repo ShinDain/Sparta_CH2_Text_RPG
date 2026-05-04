@@ -1,9 +1,6 @@
 #pragma once
-#include <map>
-#include <string>
+#include "Component.h"
 #include "../Item/Item.h"
-
-using namespace std;
 
 class Character;
 
@@ -22,14 +19,14 @@ struct InventoryEntry
 	}
 };
 
-class InventoryComponent
+class InventoryComponent : public Component
 {
 public:
 	InventoryComponent() = delete;
-	InventoryComponent(Character* owner);
+	InventoryComponent(Character* owner, string name);
 	virtual ~InventoryComponent();
 
-	void Initialize();
+	virtual void Initialize() override;
 
 	InventoryEntry* FindItem(string itemName);
 	bool UseItem(string itemName);
@@ -38,29 +35,8 @@ public:
 	InventoryEntry* InitItemEntry(ItemData data);
 
 	void PrintInventory();
-
-	//template<typename T> 
-	//ItemData* InitItemData();
 private:
 	map<string, InventoryEntry*> mItems;
-
-	Character* mOwner;
 public:
 	int GetItemAmount(string itemName);
 };
-
-//template<typename T>
-//inline ItemData* InventoryComponent::InitItemData()
-//{
-//	ItemData* itemData = new ItemData();
-//	itemData->Instance = new T();
-//	if (itemData->Instance)
-//	{
-//		itemData->Name = itemData->Instance->GetName();
-//		itemData->Amount = 0;
-//	}
-//
-//	mItems.emplace(itemData->Name, itemData);
-//
-//	return itemData;
-//}

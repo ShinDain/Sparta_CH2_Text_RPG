@@ -20,5 +20,7 @@ public:
 	string GetDropItemName() { return mDropItemData.Name; }
 	int GetDropItemPrice() { return mDropItemData.Price; }
 	ItemData GetDropItemData() { return mDropItemData; }
+
+	void SetDropItemData(ItemData dropItemData) { mDropItemData = dropItemData; }
 };
 

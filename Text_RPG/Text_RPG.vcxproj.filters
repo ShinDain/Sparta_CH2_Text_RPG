@@ -48,12 +48,6 @@
     <ClCompile Include="Component\InventoryComponent.cpp">
       <Filter>Source\Component</Filter>
     </ClCompile>
-    <ClCompile Include="Item\HPPotion.cpp">
-      <Filter>Source\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="Item\MPPotion.cpp">
-      <Filter>Source\Item</Filter>
-    </ClCompile>
     <ClCompile Include="System\StateManager.cpp">
       <Filter>Source\System</Filter>
     </ClCompile>
@@ -78,6 +72,12 @@
     <ClCompile Include="Character\Monster.cpp">
       <Filter>Source\Character</Filter>
     </ClCompile>
+    <ClCompile Include="Component\AlchemyComponent.cpp">
+      <Filter>Source\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\Component.cpp">
+      <Filter>Source\Component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game\Game.h">
@@ -94,12 +94,6 @@
     </ClInclude>
     <ClInclude Include="Component\InventoryComponent.h">
       <Filter>Source\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="Item\HPPotion.h">
-      <Filter>Source\Item</Filter>
-    </ClInclude>
-    <ClInclude Include="Item\MPPotion.h">
-      <Filter>Source\Item</Filter>
     </ClInclude>
     <ClInclude Include="System\StateManager.h">
       <Filter>Source\System</Filter>
@@ -127,6 +121,12 @@
     </ClInclude>
     <ClInclude Include="Character\Monster.h">
       <Filter>Source\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\AlchemyComponent.h">
+      <Filter>Source\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\Component.h">
+      <Filter>Source\Component</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
