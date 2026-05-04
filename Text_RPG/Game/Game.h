@@ -1,7 +1,7 @@
 #pragma once
+#include "../CommonInclude.h"
 #include "../Character/Character.h"
-
-using namespace std;
+#include "../Character/Player.h"
 
 class Game
 {
@@ -25,6 +25,6 @@ private:
 	bool mIsRunning;
 	bool mIsGameStarted;
 
-	Character* mPlayer;
+	Player* mPlayer;
 };
 

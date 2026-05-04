@@ -125,26 +125,37 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Character\Character.cpp" />
+    <ClCompile Include="Character\Class\Archer.cpp" />
+    <ClCompile Include="Character\Class\Magician.cpp" />
+    <ClCompile Include="Character\Class\Thief.cpp" />
+    <ClCompile Include="Character\Class\Warrior.cpp" />
+    <ClCompile Include="Character\Player.cpp" />
     <ClCompile Include="Component\InventoryComponent.cpp" />
     <ClCompile Include="Game\Game.cpp" />
     <ClCompile Include="Item\HPPotion.cpp" />
     <ClCompile Include="Item\Item.cpp" />
     <ClCompile Include="Item\MPPotion.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="System\EventManager.cpp" />
-    <ClCompile Include="System\Event\Event.cpp" />
+    <ClCompile Include="States\State.cpp" />
     <ClCompile Include="System\FileLoader.cpp" />
+    <ClCompile Include="System\StateManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character\Character.h" />
+    <ClInclude Include="Character\Class\Archer.h" />
+    <ClInclude Include="Character\Class\Magician.h" />
+    <ClInclude Include="Character\Class\Thief.h" />
+    <ClInclude Include="Character\Class\Warrior.h" />
+    <ClInclude Include="Character\Player.h" />
+    <ClInclude Include="CommonInclude.h" />
     <ClInclude Include="Component\InventoryComponent.h" />
     <ClInclude Include="Game\Game.h" />
     <ClInclude Include="Item\HPPotion.h" />
     <ClInclude Include="Item\Item.h" />
     <ClInclude Include="Item\MPPotion.h" />
-    <ClInclude Include="System\EventManager.h" />
-    <ClInclude Include="System\Event\Event.h" />
+    <ClInclude Include="States\State.h" />
     <ClInclude Include="System\FileLoader.h" />
+    <ClInclude Include="System\StateManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

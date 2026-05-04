@@ -1,58 +1,38 @@
 #pragma once
-#include <string>;
-#include "../Component/InventoryComponent.h"
-
-using namespace std;
+#include "../CommonInclude.h"
 
 const int SIZE = 4;
 
 class Character
 {
 public:
-	enum class STAT_INDEX
-	{
-		HP = 0,
-		MP = 1,
-		ATTACK = 2,
-		DEFENCE = 3,
-		END,
-	};
-
-public:
-	Character();
+	Character() = delete;
+	Character(string name, int hp, int mp, int Attack, int defence);
 	virtual ~Character();
 
-	bool Initialize();
+	virtual bool Initialize();
+	virtual void PrintStats();
 
-	void PrintStats();
-
-	void AcquireItem(string itemName, int amount);
-	bool UseItem(string itemName);
 	void RecoveryHP(int amount);
 	void RecoveryMP(int amount);
 protected:
-	bool InitializeName();
-	bool InitializeTwoStats(STAT_INDEX StatIndex1, STAT_INDEX StatIndex2);
-
-	bool IsValidStatValue(STAT_INDEX StatIndex, int InValue);
-protected:
 	string mName;
 
-	int mStats[SIZE];
-
-	InventoryComponent* mInventoryComp;
+	int mLevel;
+	int mHP;
+	int mMP;
+	int mAttack;
+	int mDefence;
 
 public:
 	string GetName() const { return mName; }
-	int GetHP() const { return mStats[(int)STAT_INDEX::HP]; }
-	int GetMP() const { return mStats[(int)STAT_INDEX::MP]; }
-	int GetAttack() const { return mStats[(int)STAT_INDEX::ATTACK]; }
-	int GetDefence() const { return mStats[(int)STAT_INDEX::DEFENCE]; }
+	int GetHP() const { return mHP; }
+	int GetMP() const { return mMP; }
+	int GetAttack() const { return mAttack; }
+	int GetDefence() const { return mDefence; }
+	int GetLevel() const { return mLevel; }
 
-	//void SetMP(int InValue) { mStats[(int)STAT_INDEX::MP] = InValue; }
-	//void SetName(const string& InName) { mName = InName; }
-	//void SetHP(int InValue) { mStats[(int)STAT_INDEX::HP] = InValue; }
-	//void SetAttack(int InValue) { mStats[(int)STAT_INDEX::ATTACK] = InValue; }
-	//void SetDefence(int InValue) { mStats[(int)STAT_INDEX::DEFENCE] = InValue; }
+	void SetAttack(int InValue) { mAttack = InValue; }
+	void SetDefence(int InValue) { mDefence = InValue; }
 };
 

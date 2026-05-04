@@ -1,32 +1,19 @@
 ﻿#include "Character.h"
 #include <iostream>
+#include "Player.h"
 
-Character::Character()
+Character::Character(string name, int hp, int mp, int Attack, int defence)
+	:mName(name), mHP(hp), mMP(mp), mAttack(Attack), mDefence(defence), mLevel(1)
 {
-	mInventoryComp = nullptr;
 }
 
 Character::~Character()
 {
-	delete mInventoryComp;
-	mInventoryComp = nullptr;	
 }
 
 bool Character::Initialize()
 {
 	bool result = true;
-
-	mInventoryComp = new InventoryComponent(this);
-	if (mInventoryComp == nullptr)
-		return false;
-	mInventoryComp->Initialize();
-
-	result = InitializeName();
-
-	cout << "HP와 MP를 입력해주세요 : ";
-	result = InitializeTwoStats(STAT_INDEX::HP, STAT_INDEX::MP);
-	cout << "공격력과 방어력을 입력해주세요 : ";
-	result = InitializeTwoStats(STAT_INDEX::ATTACK, STAT_INDEX::DEFENCE);
 
 	return result;
 }
@@ -36,94 +23,21 @@ void Character::PrintStats()
 	cout << "\n====================================\n";
 	cout << mName << " 의 현재 능력치\n";
 	cout << "====================================\n";
-	cout << "HP: " << mStats[(int)STAT_INDEX::HP] << "    MP : " << mStats[(int)STAT_INDEX::MP] << "\n";
-	cout << "공격력: " << mStats[(int)STAT_INDEX::ATTACK] << "    방어력 : " << mStats[(int)STAT_INDEX::DEFENCE] << "\n";
+	cout << "HP: " << mHP << "    MP : " << mMP << "\n";
+	cout << "공격력: " << mAttack << "    방어력 : " << mDefence << "\n";
 	cout << "====================================\n";
-}
-
-void Character::AcquireItem(string itemName, int amount)
-{
-	mInventoryComp->AddItem(itemName, amount);
-}
-
-bool Character::UseItem(string itemName)
-{
-	return mInventoryComp->UseItem(itemName);
 }
 
 void Character::RecoveryHP(int amount)
 {
-	mStats[(int)STAT_INDEX::HP] += amount;
+	mHP += amount;
 
-	cout << "HP포션을 사용하여, HP를 20만큼 회복하였습니다.";
+	cout << "HP포션을 사용하여, HP를 20만큼 회복하였습니다.\n";
 }
 
 void Character::RecoveryMP(int amount)
 {
-	mStats[(int)STAT_INDEX::MP] += amount;
+	mMP += amount;
 
-	cout << "MP포션을 사용하여, MP를 20만큼 회복하였습니다.";
-}
-
-bool Character::InitializeName()
-{
-	cout << "용사의 이름을 입력해주세요 : ";
-	string InName;
-	cin >> InName;
-
-	mName = InName;
-
-	cout << "\n";
-
-	return true;
-}
-
-bool Character::InitializeTwoStats(STAT_INDEX StatIndex1, STAT_INDEX StatIndex2)
-{
-	int Input1, Input2 = 0;
-	while (true)
-	{
-		cin >> Input1 >> Input2;
-
-		if (IsValidStatValue(StatIndex1, Input1)
-			&& IsValidStatValue(StatIndex2, Input2))
-		{
-			mStats[(int)StatIndex1] = Input1;
-			mStats[(int)StatIndex2] = Input2;
-			break;
-		}
-	}
-
-	return true;
-}
-
-bool Character::IsValidStatValue(STAT_INDEX StatIndex, int InValue)
-{
-	bool result = true;
-
-	switch (StatIndex)
-	{
-	case Character::STAT_INDEX::HP:
-	case Character::STAT_INDEX::MP:
-		if (InValue < 50)
-		{
-			cout << "HP 또는 MP가 너무 작습니다. 다시 입력해주세요. (50 이상)\n";
-			cout << "HP와 MP를 입력해주세요 : ";
-			result = false;
-		}
-		break;
-	case Character::STAT_INDEX::ATTACK:
-	case Character::STAT_INDEX::DEFENCE:
-		if (InValue <= 0)
-		{
-			cout << "공격력 또는 방어력이 너무 작습니다. 다시 입력해주세요. (1 이상)\n";
-			cout << "공격력과 방어력을 입력해주세요 : ";
-			result = false;
-		}
-		break;
-	default:
-		break;
-	}
-
-	return result;
+	cout << "MP포션을 사용하여, MP를 20만큼 회복하였습니다.\n";
 }

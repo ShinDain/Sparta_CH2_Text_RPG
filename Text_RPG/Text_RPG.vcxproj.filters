@@ -19,8 +19,11 @@
     <Filter Include="Source\Component">
       <UniqueIdentifier>{d256c852-02b2-4916-9d85-a737163a892d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\System\Event">
-      <UniqueIdentifier>{3e2db728-f93e-459d-8112-409240e03b16}</UniqueIdentifier>
+    <Filter Include="Source\States">
+      <UniqueIdentifier>{9392e6a4-813b-4436-a9da-a5c014f791e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Character\Class">
+      <UniqueIdentifier>{e1079313-3b78-4d8c-8ade-af1ef07615df}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -42,17 +45,32 @@
     <ClCompile Include="Component\InventoryComponent.cpp">
       <Filter>Source\Component</Filter>
     </ClCompile>
-    <ClCompile Include="System\Event\Event.cpp">
-      <Filter>Source\System\Event</Filter>
-    </ClCompile>
-    <ClCompile Include="System\EventManager.cpp">
-      <Filter>Source\System</Filter>
-    </ClCompile>
     <ClCompile Include="Item\HPPotion.cpp">
       <Filter>Source\Item</Filter>
     </ClCompile>
     <ClCompile Include="Item\MPPotion.cpp">
       <Filter>Source\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="System\StateManager.cpp">
+      <Filter>Source\System</Filter>
+    </ClCompile>
+    <ClCompile Include="States\State.cpp">
+      <Filter>Source\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Character\Player.cpp">
+      <Filter>Source\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Character\Class\Warrior.cpp">
+      <Filter>Source\Character\Class</Filter>
+    </ClCompile>
+    <ClCompile Include="Character\Class\Magician.cpp">
+      <Filter>Source\Character\Class</Filter>
+    </ClCompile>
+    <ClCompile Include="Character\Class\Thief.cpp">
+      <Filter>Source\Character\Class</Filter>
+    </ClCompile>
+    <ClCompile Include="Character\Class\Archer.cpp">
+      <Filter>Source\Character\Class</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -71,17 +89,35 @@
     <ClInclude Include="Component\InventoryComponent.h">
       <Filter>Source\Component</Filter>
     </ClInclude>
-    <ClInclude Include="System\Event\Event.h">
-      <Filter>Source\System\Event</Filter>
-    </ClInclude>
-    <ClInclude Include="System\EventManager.h">
-      <Filter>Source\System</Filter>
-    </ClInclude>
     <ClInclude Include="Item\HPPotion.h">
       <Filter>Source\Item</Filter>
     </ClInclude>
     <ClInclude Include="Item\MPPotion.h">
       <Filter>Source\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="System\StateManager.h">
+      <Filter>Source\System</Filter>
+    </ClInclude>
+    <ClInclude Include="States\State.h">
+      <Filter>Source\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Character\Player.h">
+      <Filter>Source\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="CommonInclude.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Character\Class\Warrior.h">
+      <Filter>Source\Character\Class</Filter>
+    </ClInclude>
+    <ClInclude Include="Character\Class\Magician.h">
+      <Filter>Source\Character\Class</Filter>
+    </ClInclude>
+    <ClInclude Include="Character\Class\Thief.h">
+      <Filter>Source\Character\Class</Filter>
+    </ClInclude>
+    <ClInclude Include="Character\Class\Archer.h">
+      <Filter>Source\Character\Class</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
