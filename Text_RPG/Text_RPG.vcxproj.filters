@@ -28,6 +28,9 @@
     <Filter Include="Source\Character\Monster">
       <UniqueIdentifier>{64eadc55-deaa-4137-b56d-8ae9b51291ab}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\System\Data">
+      <UniqueIdentifier>{1f060df4-50a6-4d63-8d51-98759557d351}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\Game.cpp">
@@ -78,6 +81,9 @@
     <ClCompile Include="Component\Component.cpp">
       <Filter>Source\Component</Filter>
     </ClCompile>
+    <ClCompile Include="System\Data\StringTable.cpp">
+      <Filter>Source\System\Data</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game\Game.h">
@@ -127,6 +133,9 @@
     </ClInclude>
     <ClInclude Include="Component\Component.h">
       <Filter>Source\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="System\Data\StringTable.h">
+      <Filter>Source\System\Data</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

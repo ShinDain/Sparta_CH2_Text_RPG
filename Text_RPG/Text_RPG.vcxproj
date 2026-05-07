@@ -138,6 +138,7 @@
     <ClCompile Include="Item\Item.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="States\State.cpp" />
+    <ClCompile Include="System\Data\StringTable.cpp" />
     <ClCompile Include="System\FileLoader.cpp" />
     <ClCompile Include="System\StateManager.cpp" />
   </ItemGroup>
@@ -156,6 +157,7 @@
     <ClInclude Include="Game\Game.h" />
     <ClInclude Include="Item\Item.h" />
     <ClInclude Include="States\State.h" />
+    <ClInclude Include="System\Data\StringTable.h" />
     <ClInclude Include="System\FileLoader.h" />
     <ClInclude Include="System\StateManager.h" />
   </ItemGroup>

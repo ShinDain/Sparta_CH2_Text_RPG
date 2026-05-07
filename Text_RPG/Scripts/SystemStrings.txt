@@ -1,0 +1,85 @@
+single_line : "------------------------------------\n"
+double_line : "====================================\n"
+title_name : "    [ Dungeon Escape Text RPG ]\n"
+game_start : "게임을 시작합니다.\n"
+game_exit : "게임을 종료합니다.\n"
+acquire_basic_items : "{ItemName1} {ItemAmount1}개, {ItemName2} {ItemAmount2}개가 기본 지급되었습니다.\n"
+
+state_death : "(사망)\n"
+input_name : "용사의 이름을 입력해주세요 : "
+input_stat_hp_mp : "HP와 MP를 입력해주세요 : "
+input_stat_hp_mp_error : "HP 또는 MP가 너무 작습니다. 다시 입력해주세요. (50 이상)\n"
+input_stat_attack_defence : "공격력과 방어력을 입력해주세요 : "
+input_stat_attack_defence_error : "공격력 또는 방어력이 너무 작습니다. 다시 입력해주세요. (1 이상)\n"
+
+
+input_number : "번호를 선택해주세요 : \n"
+invalid_input : "잘못된 입력입니다. 다시 입력해주세요.\n"
+not_found : "찾을 수 없습니다.\n"
+
+print_stat_1 : "{Name} 의 현재 능력치\n"
+print_stat_2 : "닉네임:  {Name}  | 직업:  {Class}  | Lv. {Level}\n"
+print_stat_3 : "HP:  {HP}  | MP :  {MP}  | 공격력:  {Attack}  | 방어력 :  {Defence}\n"
+
+stat_setting_1 : "=========== 스탯 설정 =============\n"
+stat_setting_2 : "< 캐릭터 강화 >\n"
+stat_setting_3 : "1. HP UP    2. MP UP    3. 공격력 2배\n"
+stat_setting_4 : "4. 방어력 2배  5. 현재 능력치  0. 게임 시작\n"
+stat_setting_attack : "공격력이 2배가 되어  {Result} 이 되었습니다.\n"
+stat_setting_defence : "방어력이 2배가 되어  {Result} 이 되었습니다.\n"
+
+class_select_1 : "< 전직 시스템 >\n"
+class_select_2 : "{Name} 님, 직업을 선택해주세요!\n"
+class_select_3 : "1. 전사   2. 마법사   3. 도적   4. 궁수\n"
+class_name_warrior : "전사\n"
+class_name_magician : "마법사\n"
+class_name_thief : "도적\n"
+class_name_archer : "궁수\n"
+class_selected_warrior : "전사로 전직하였습니다! (HP + 20, 방어력 + 10)\n"
+class_selected_magician : "마법사로 전직하였습니다! (MP + 30)\n"
+class_selected_thief : "도적으로 전직하였습니다! (MP + 20, 공격력 + 10)\n"
+class_selected_archer : "궁수로 전직하였습니다! (HP - 10, 공격력 + 20)\n"
+class_attack_warrior : "검으로 내리쳤다!\n"
+class_attack_magician : "화염구를 발사했다!\n"
+class_attack_thief : "단검으로 찔렀다!\n"
+class_attack_archer : "화살을 쏘았다!\n"
+
+menu_select_1 : "============= 메뉴 ===============\n"
+menu_select_2 : "0. 게임 종료\n"
+menu_select_3 : "1. 던전 입장\n"
+menu_select_4 : "2. 인벤토리\n"
+menu_select_5 : "3. 포션 제작소\n"
+menu_select_6 : "4. 스탯 설정으로\n"
+menu_move_alchemy : "포션 제작소로 이동합니다.\n"
+menu_move_stat : "스탯 설정으로 돌아갑니다.\n"
+
+combat_start : "전투에 돌입합니다.\n"
+combat_encounter : "{Name} 과 만났습니다!\n"
+combat_player_select_1 : "--- 플레이어 턴 ---\n"
+combat_player_select_2 : "1. 공격\n"
+combat_monster : "--- 몬스터 턴 ---\n"
+combat_monster_attack : "{Name} 의 몸통박치기!\n"
+combat_attack_result_1 : "{Name} 에게 {Result} 데미지!\n"
+combat_attack_result_2 : "{Name} HP: {PreValue} -> {PostValue}\n"
+
+combat_end_result : -> {MonsterName} 의 {DropItemName} 획득\n!
+combat_end_win : "★ 전투 승리!\n"
+combat_end_defeat : "★ 전투 패배\n"
+combat_end_move_menu : "메뉴로 돌아갑니다.\n"\n
+
+alchemy_select_1 : "=== 포션 제작소 ===\n"
+alchemy_select_2 : "1. 전체 레시피 보기\n"
+alchemy_select_3 : "2. 포션 이름으로 검색\n"
+alchemy_select_4 : "3. 재료로 검색\n"
+alchemy_select_5 : "4. 돌아가기\n"
+
+alchemy_find_by_ingredient : "검색할 재료 이름: \n"
+alchemy_find_by_potion : "검색할 포션 이름: \n"
+
+item_use_recovery_HP : "{Name}을 사용하여, HP를 {Value}만큼 회복하였습니다.\n"
+item_use_recovery_MP : "{Name}을 사용하여, MP를 {Value}만큼 회복하였습니다.\n"
+item_use_not_enough : "{ItemName}이 부족합니다.\n"
+
+inventory_print_item : "{Index}. {Name} ({Price}G) {Amount}개\n"
+print_item_data : "{Name} ({Price}G)\n"
+

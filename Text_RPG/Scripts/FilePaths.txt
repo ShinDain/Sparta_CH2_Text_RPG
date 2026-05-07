@@ -1,0 +1,3 @@
+.\\Scripts\\SystemStrings.txt
+.\\Scripts\\MonsterData.txt
+.\\Scripts\\ItemData.txt

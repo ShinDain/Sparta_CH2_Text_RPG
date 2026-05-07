@@ -22,10 +22,13 @@ public:
 	virtual ~Game();
 
 	bool Initialize();
+	
 	void RunLoop();
 	void ShutDown();
 
 private:
+	bool InitializeStringTable();
+
 	void ProcessInput_Village();
 	void ProcessInput_MainMenu();
 	void ProcessInput_Combat();
