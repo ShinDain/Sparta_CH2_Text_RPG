@@ -1,5 +1,6 @@
 #pragma once
 #include "../CommonInclude.h"
+#include "../System/Data/ItemTable.h"
 
 class Character;
 
@@ -25,33 +26,21 @@ struct Recipe
 	}
 };
 
-struct ItemData
-{
-	string Name;
-	int Price;
-
-	ItemData()
-		:Name("None"), Price(0) {}
-	ItemData(string name, int price)
-		:Name(name), Price(price) {}
-};
-
 class Item
 {
 public:
 	Item() = delete;
-	Item(string itemName, int price);
+	Item(const ItemData* data);
 	virtual ~Item();
 
 	virtual void Active(Character* instigator) {};
 	void PrintInfo();
 
 protected:
-	string mName;
-	int mPrice;
+	const ItemData* mData;
 
 public:
-	string GetName() { return mName; }
-	int GetPrice() { return mPrice; }
+	string GetName() { return mData->Name; }
+	int GetPrice() { return mData->Price; }
 };
 

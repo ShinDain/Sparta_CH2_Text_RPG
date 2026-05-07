@@ -1,11 +1,16 @@
 #include "Monster.h"
 #include "Player.h"
 
-Monster::Monster(string name, int hp, int mp, int Attack, int defence)
-	: Character(name, hp, mp, Attack, defence)
+Monster::Monster(const MonsterData* data)
+	: mData(data)
 {
-	ItemData dropItemData("끈적한 젤리", 30);
-	mDropItemData = dropItemData;
+	mName = mData->Name;
+	mMaxHP = mData->HP;
+	mHP = mData->HP;
+	mMP = mData->MP;
+	mAttack = mData->Attack;
+	mDefence = mData->Defence;
+	mDropItemName = mData->DropItemName;
 }
 
 Monster::~Monster()
@@ -17,7 +22,6 @@ bool Monster::Initialize()
 	bool result = true;
 	mIsDead = false;
 	mHP = mMaxHP;
-
 
 	return result;
 }

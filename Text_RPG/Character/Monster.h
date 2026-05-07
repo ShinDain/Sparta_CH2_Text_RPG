@@ -1,13 +1,14 @@
 #pragma once
 #include "../CommonInclude.h"
 #include "Character.h"
-#include "../Item/Item.h"
+//#include "../System/Data/ItemTable.h"
+#include "../System/Data/MonsterTable.h"
 
 class Monster : public Character
 {
 public:
 	Monster() = delete;
-	Monster(string name, int hp, int mp, int Attack, int defence);
+	Monster(const MonsterData* data);
 	virtual ~Monster();
 
 	virtual bool Initialize() override;
@@ -15,12 +16,9 @@ public:
 
 	virtual void Attack(class Character* target) override;
 protected:
-	ItemData mDropItemData;
+	const MonsterData* mData;
+	string mDropItemName;
 public:
-	string GetDropItemName() { return mDropItemData.Name; }
-	int GetDropItemPrice() { return mDropItemData.Price; }
-	ItemData GetDropItemData() { return mDropItemData; }
-
-	void SetDropItemData(ItemData dropItemData) { mDropItemData = dropItemData; }
+	string GetDropItemName() { return mDropItemName; }
 };
 

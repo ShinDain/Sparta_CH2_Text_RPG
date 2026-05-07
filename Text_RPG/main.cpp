@@ -20,10 +20,6 @@ int main()
 	mainGame.ShutDown();
 }
 
-//vector<string> fileStrings = {};
-//FileLoader::Load("C:\\Users\\Main\\Documents\\GitHub\\Sparta_CH2_Text_RPG\\Text_RPG\\Scripts\\TestScript.txt", fileStrings);
-//FileLoader::Load(".\\Scripts\\TestScript.txt", fileStrings);
-
 // State, Player, Monster, Map
 // 정보를 가지고 게임 흐름을 조정
 // 입력을 수신 후 전파
@@ -42,5 +38,3 @@ int main()
 // 몬스터 데이터
 // 레시피 데이터
 // =======================
-
-//

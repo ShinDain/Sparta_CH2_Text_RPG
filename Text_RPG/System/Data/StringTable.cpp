@@ -1,15 +1,10 @@
 #include "StringTable.h"
 #include "../FileLoader.h"
 
-map<string, string> StringTable::mStrings = {};
-string StringTable::mPath = "";
-
-StringTable::StringTable()
+StringTable& StringTable::GetInstance()
 {
-}
-
-StringTable::~StringTable()
-{
+	static StringTable instance;
+	return instance;
 }
 
 bool StringTable::Load(const string& filePath)
@@ -23,35 +18,7 @@ bool StringTable::Load(const string& filePath)
 		ParseString(str);
 	}
 
-	mPath = filePath;
-
 	return true;
-}
-
-void StringTable::Trim(string& inString)
-{
-	inString.erase(find_if(inString.rbegin(), inString.rend(), [](unsigned char ch)
-		{
-			return !std::isspace(ch);
-		}).base(), inString.end());
-
-	inString.erase(inString.begin(), find_if(inString.begin(), inString.end(), [](unsigned char ch)
-		{
-			return !std::isspace(ch);
-		}));
-}
-
-void StringTable::Unquote(string& inString)
-{
-	inString.erase(find_if(inString.rbegin(), inString.rend(), [](char ch)
-		{
-			return ch == '\"' ? false : true;
-		}).base(), inString.end());
-
-	inString.erase(inString.begin(), find_if(inString.begin(), inString.end(), [](char ch)
-		{
-			return ch == '\"' ? false : true;
-		}));
 }
 
 void StringTable::ParseString(const string& inString)
@@ -59,60 +26,41 @@ void StringTable::ParseString(const string& inString)
 	if (inString.empty() || inString[0] == '#')
 		return;
 
-	char symbol = ':';
-	
-	size_t pos = inString.find(symbol);
+	size_t pos = inString.find(SPLIT_SYMBOL);
 	if (pos != string::npos)
 	{
 		string key = inString.substr(0, pos);
 		string value = inString.substr(pos + 1);
 
-		Trim(key);
-		Trim(value);
-		Unquote(value);
-		ReplaceEscapeChar(value);
+		StringHelper::Trim(key);
+		StringHelper::PurifyString(value);
+		StringHelper::ReplaceEscapeChar(value);
 
 		mStrings[key] = value;
 	}
 }
 
-void StringTable::ReplaceEscapeChar(string& string)
-{
-	size_t pos = 0;
-	while ((pos = string.find("\\n", pos)) != string::npos)
-	{
-		string.replace(pos, 2, "\n");
-		++pos;
-	}
-}
-
-StringTable StringTable::Get()
-{
-	static StringTable instance;
-	return instance;
-}
-
-void StringTable::PrintString(const string& key)
+void StringTable::PrintString(const string& key) const
 {
 	cout << GetString(key);
 }
 
-void StringTable::PrintFormatString(const string& key, initializer_list<pair<string, string>> replacements)
+void StringTable::PrintFormatString(const string& key, initializer_list<pair<string, string>> replacements) const
 {
 	cout << GetFormatString(key, replacements);
 }
 
-string StringTable::GetString(const string& key)
+string StringTable::GetString(const string& key) const
 {
 	if (mStrings.find(key) != mStrings.end())
 	{
-		return mStrings[key];
+		return mStrings.at(key);
 	}
 		
 	return "";
 }
 
-string StringTable::GetFormatString(const string& key, initializer_list<pair<string, string>> replacements)
+string StringTable::GetFormatString(const string& key, initializer_list<pair<string, string>> replacements) const
 {
 	string formatString = GetString(key);
 

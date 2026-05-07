@@ -2,10 +2,8 @@
 #include <iostream>
 #include "Player.h"
 
-Character::Character(string name, int hp, int mp, int Attack, int defence)
-	:mName(name), mMaxHP(hp), mHP(hp), mMP(mp), mAttack(Attack), mDefence(defence), mLevel(1)
+Character::Character()
 {
-	
 }
 
 Character::~Character()

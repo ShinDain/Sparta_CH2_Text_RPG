@@ -138,9 +138,14 @@
     <ClCompile Include="Item\Item.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="States\State.cpp" />
+    <ClCompile Include="System\Data\DataTable.cpp" />
+    <ClCompile Include="System\Data\ItemTable.cpp" />
+    <ClCompile Include="System\Data\MonsterTable.cpp" />
+    <ClCompile Include="System\Data\RecipeTable.cpp" />
     <ClCompile Include="System\Data\StringTable.cpp" />
     <ClCompile Include="System\FileLoader.cpp" />
     <ClCompile Include="System\StateManager.cpp" />
+    <ClCompile Include="System\StringHelper.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character\Character.h" />
@@ -157,9 +162,14 @@
     <ClInclude Include="Game\Game.h" />
     <ClInclude Include="Item\Item.h" />
     <ClInclude Include="States\State.h" />
+    <ClInclude Include="System\Data\DataTable.h" />
+    <ClInclude Include="System\Data\ItemTable.h" />
+    <ClInclude Include="System\Data\MonsterTable.h" />
+    <ClInclude Include="System\Data\RecipeTable.h" />
     <ClInclude Include="System\Data\StringTable.h" />
     <ClInclude Include="System\FileLoader.h" />
     <ClInclude Include="System\StateManager.h" />
+    <ClInclude Include="System\StringHelper.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

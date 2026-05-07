@@ -1,6 +1,8 @@
 ﻿#include "Game.h"
 #include "../System/FileLoader.h"
 #include "../System/Data/StringTable.h"
+#include "../System/Data/ItemTable.h"
+#include "../System/Data/MonsterTable.h"
 #include "../Character/Player.h"
 #include "../Character/Class/Warrior.h"
 #include "../Character/Class/Thief.h"
@@ -86,41 +88,41 @@ bool Game::Initialize()
 	if (!InitializeStringTable())
 		return false;
 
-	StringTable::PrintString("double_line");
-	StringTable::PrintString("title_name");
-	StringTable::PrintString("double_line");
+	PrintString("double_line");
+	PrintString("title_name");
+	PrintString("double_line");
 
-	StringTable::PrintString("input_name");
+	PrintString("input_name");
     string InName;
     cin >> InName;
 
     int hp = 0, mp = 0;
     while (hp < 50 || mp < 50)
     {
-		StringTable::PrintString("input_stat_hp_mp");
+		PrintString("input_stat_hp_mp");
         cin >> hp >> mp;
 		if (hp < 50 || mp < 50)
 		{
-			StringTable::PrintString("input_stat_hp_mp_error");
+			PrintString("input_stat_hp_mp_error");
 		}
     }
 	int attack = 0, defence = 0;
 	while (attack <= 0 || defence <= 0)
 	{
-		StringTable::PrintString("input_stat_attack_defence");
+		PrintString("input_stat_attack_defence");
 		cin >> attack >> defence;
 		if (attack <= 0 || defence <= 0)
 		{
-			StringTable::PrintString("input_stat_attack_defence_error");
+			PrintString("input_stat_attack_defence_error");
 		}
 	}
 
 	int selectClass = 0;
 	while (selectClass <= 0 || selectClass > 4)
 	{
-		StringTable::PrintString("class_select_1");
-		StringTable::PrintFormatString("class_select_2", { {"{Name}", InName} });
-		StringTable::PrintString("class_select_3");
+		PrintString("class_select_1");
+		PrintFormatString("class_select_2", { {"{Name}", InName} });
+		PrintString("class_select_3");
 		cin >> selectClass;
 		switch (selectClass)
 		{
@@ -137,7 +139,7 @@ bool Game::Initialize()
 			mPlayer = new Archer(InName, hp, mp, attack, defence);
 			break;
 		default:
-			StringTable::PrintString("invalid_input");
+			PrintString("invalid_input");
 			break;
 		}
 	}
@@ -146,28 +148,32 @@ bool Game::Initialize()
     {
         result = mPlayer->Initialize();
         mPlayer->PrintStats();
-		cout << "\nHP 포션 5개, MP 포션 5개가 기본 지급되었습니다.\n";
 
-		ItemData HP포션Data("HP포션", 50);
-		ItemData MP포션Data("MP포션", 50);
+		const ItemData* HPpotionData = FindItemDataByName("HP포션");
+		const ItemData* MPpotionData = FindItemDataByName("MP포션");
+		PrintFormatString("acquire_basic_items",{
+			{"{ItemName1}", HPpotionData->Name},
+			{"{ItemAmount1}", to_string(5)},
+			{"{ItemName2}", MPpotionData->Name},
+			{"{ItemAmount2}", to_string(5)},
+			});
 		
-		mPlayer->AcquireItem(HP포션Data, 5);
-		mPlayer->AcquireItem(MP포션Data, 5);
+		mPlayer->AcquireItem(HPpotionData, 5);
+		mPlayer->AcquireItem(MPpotionData, 5);
     }
 
-	mMonster[0] = new Monster("슬라임", 30, 0, 20, 10);
+	const MonsterData* slimeData = FindMonsterDataByName("슬라임");
+	const MonsterData* mushroomData = FindMonsterDataByName("주황 버섯");
+
+	mMonster[0] = new Monster(slimeData);
 	if (mMonster[0])
 	{
 		mMonster[0]->Initialize();
 	}
-	mMonster[1] = new Monster("주황 버섯", 60, 0, 15, 15);
+	mMonster[1] = new Monster(mushroomData);
 	if (mMonster[1])
 	{
 		mMonster[1]->Initialize();
-		ItemData dropItem;
-		dropItem.Name = "버섯의 포자";
-		dropItem.Price = 50;
-		mMonster[1]->SetDropItemData(dropItem);
 	}
     
     mIsRunning = result;
@@ -181,10 +187,20 @@ bool Game::InitializeStringTable()
 	FileLoader::Load(INIT_FILE_PATH, filePaths);
 
 	bool result = true;
-	for (string path : filePaths)
+
 	{
-		StringTable table = StringTable::Get();
-		result = table.Load(path);
+		StringTable& table = StringTable::GetInstance();
+		result = table.Load(filePaths[0]);
+	}
+
+	{
+		ItemTable& table = ItemTable::GetInstance();
+		result = table.Load(filePaths[1]);
+	}
+
+	{
+		MonsterTable& table = MonsterTable::GetInstance();
+		result = table.Load(filePaths[2]);
 	}
 
 	return result;
@@ -391,7 +407,9 @@ void Game::PrintCombatEnd()
 	{
 		cout << "★ 전투 승리!\n";
 		cout << "-> " << mMonster[mCurMonsterIdx]->GetName() << "의 " << mMonster[mCurMonsterIdx]->GetDropItemName() << " 획득!";
-		mPlayer->AcquireItem(mMonster[mCurMonsterIdx]->GetDropItemData(), 1);
+
+		const ItemData* dropItemData = FindItemDataByName(mMonster[mCurMonsterIdx]->GetDropItemName());
+		mPlayer->AcquireItem(dropItemData, 1);
 	}
 	else
 	{

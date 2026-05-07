@@ -1,5 +1,6 @@
 #include "InventoryComponent.h"
 #include "../Item/Item.h"
+#include "../System/Data/ItemTable.h"
 
 InventoryComponent::InventoryComponent(Character* owner, string name)
 	:Component(owner, name)
@@ -52,9 +53,9 @@ bool InventoryComponent::UseItem(string itemName)
 	return false;
 }
 
-void InventoryComponent::AddItem(ItemData data, int amount)
+void InventoryComponent::AddItem(const ItemData* data, int amount)
 {
-	InventoryEntry* inventoryEntry = FindItem(data.Name);
+	InventoryEntry* inventoryEntry = FindItem(data->Name);
 
 	if (inventoryEntry)
 	{
@@ -70,15 +71,15 @@ void InventoryComponent::AddItem(ItemData data, int amount)
 	}
 }
 
-InventoryEntry* InventoryComponent::InitItemEntry(ItemData data)
+InventoryEntry* InventoryComponent::InitItemEntry(const ItemData* data)
 {
-	string itemName = data.Name;
-	int itemPrice = data.Price;
+	string itemName = data->Name;
+	int itemPrice = data->Price;
 
 	InventoryEntry* itemEntry = new InventoryEntry();
 	if (itemEntry)
 	{
-		itemEntry->Instance = new Item(itemName, itemPrice);
+		itemEntry->Instance = new Item(data);
 		if (itemEntry->Instance)
 		{
 			itemEntry->Amount = 0;

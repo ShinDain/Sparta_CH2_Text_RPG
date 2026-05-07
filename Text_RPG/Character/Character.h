@@ -6,8 +6,7 @@ const int SIZE = 4;
 class Character
 {
 public:
-	Character() = delete;
-	Character(string name, int hp, int mp, int Attack, int defence);
+	Character();
 	virtual ~Character();
 
 	virtual bool Initialize();

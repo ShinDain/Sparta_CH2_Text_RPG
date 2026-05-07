@@ -3,11 +3,15 @@
 
 #include "../Component/InventoryComponent.h"
 #include "../Component/AlchemyComponent.h"
+#include "../System/Data/ItemTable.h"
 
 Player::Player(string name, int hp, int mp, int Attack, int defence)
-	:Character(name, hp, mp, Attack, defence)
 {
-
+	mName = name;
+	mHP = hp;
+	mMP = mp;
+	mAttack = Attack;
+	mDefence = defence;
 }
 
 Player::~Player()
@@ -52,7 +56,7 @@ void Player::PrintInventory()
 	}
 }
 
-void Player::AcquireItem(ItemData data, int amount)
+void Player::AcquireItem(const ItemData* data, int amount)
 {
 	InventoryComponent* inventoryComp = FindComponent<InventoryComponent>("Inventory");
 	if (inventoryComp)

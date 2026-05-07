@@ -84,6 +84,21 @@
     <ClCompile Include="System\Data\StringTable.cpp">
       <Filter>Source\System\Data</Filter>
     </ClCompile>
+    <ClCompile Include="System\StringHelper.cpp">
+      <Filter>Source\System</Filter>
+    </ClCompile>
+    <ClCompile Include="System\Data\DataTable.cpp">
+      <Filter>Source\System\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="System\Data\ItemTable.cpp">
+      <Filter>Source\System\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="System\Data\MonsterTable.cpp">
+      <Filter>Source\System\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="System\Data\RecipeTable.cpp">
+      <Filter>Source\System\Data</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game\Game.h">
@@ -135,6 +150,21 @@
       <Filter>Source\Component</Filter>
     </ClInclude>
     <ClInclude Include="System\Data\StringTable.h">
+      <Filter>Source\System\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="System\StringHelper.h">
+      <Filter>Source\System</Filter>
+    </ClInclude>
+    <ClInclude Include="System\Data\DataTable.h">
+      <Filter>Source\System\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="System\Data\ItemTable.h">
+      <Filter>Source\System\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="System\Data\MonsterTable.h">
+      <Filter>Source\System\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="System\Data\RecipeTable.h">
       <Filter>Source\System\Data</Filter>
     </ClInclude>
   </ItemGroup>
