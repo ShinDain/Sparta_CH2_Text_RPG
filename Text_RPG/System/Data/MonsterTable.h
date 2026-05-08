@@ -6,24 +6,39 @@ struct MonsterData
 	enum class DataOrder
 	{
 		Name = 0,
-		HP = 1,
-		MP = 2,
-		Attack = 3,
-		Defence = 4,
-		DropItemname = 5,
+		Level,
+		HP,
+		MP,
+		Attack,
+		Defence,
+		DropItemname,
 		End,
 	};
 
 	int Index;
 	string Name;
+	uint32_t Level;
 	uint32_t HP;
 	uint32_t MP;
 	uint32_t Attack;
 	uint32_t Defence;
 	string DropItemName;
+
+	MonsterData() = delete;
+	MonsterData(const vector<string>& dataStrings)
+		: Index(-1)
+	{
+		Name = dataStrings[(int)MonsterData::DataOrder::Name];
+		Level = stoi(dataStrings[(int)MonsterData::DataOrder::Level]);
+		HP = stoi(dataStrings[(int)MonsterData::DataOrder::HP]);
+		MP = stoi(dataStrings[(int)MonsterData::DataOrder::MP]);
+		Attack = stoi(dataStrings[(int)MonsterData::DataOrder::Attack]);
+		Defence = stoi(dataStrings[(int)MonsterData::DataOrder::Defence]);
+		DropItemName = dataStrings[(int)MonsterData::DataOrder::DropItemname];
+	}
 };
 
-class MonsterTable : public IDataTable
+class MonsterTable : public BaseTable
 {
 private:
 	MonsterTable() {};
@@ -31,18 +46,15 @@ public:
 	virtual ~MonsterTable();
 
 	static MonsterTable& GetInstance();
-	virtual bool Load(const string& filePath) override;
 
 	const MonsterData* FindMonsterDataByName(const string& name) const;
 	const MonsterData* FindMonsterDataByIndex(uint32_t index) const;
 
 protected:
 	virtual void ParseString(const string& inString) override;
-
-	MonsterData* ParseMonsterData(const string& inString);
 private:
-	map<string, uint32_t> mMonsterDataIndexMap;
-	vector<MonsterData*> mMonsterDataList;
+	map<string, const MonsterData*> mNameMap;
+	map<int, const MonsterData*> mIndexMap;
 };
 
 inline const MonsterData* FindMonsterDataByName(const string& name)

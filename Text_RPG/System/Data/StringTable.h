@@ -1,7 +1,7 @@
 #pragma once
 #include "DataTable.h"
 
-class StringTable : public IDataTable
+class StringTable : public BaseTable
 {
 private:
 	StringTable() {};
@@ -11,7 +11,6 @@ public:
 	virtual ~StringTable() {};
 
 	static StringTable& GetInstance();
-	virtual bool Load(const string& filePath) override;
 
 	void PrintString(const string& key) const;
 	void PrintFormatString(const string& key, initializer_list<pair<string, string>> replacements) const;

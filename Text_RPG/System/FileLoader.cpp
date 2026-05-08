@@ -18,6 +18,10 @@ bool FileLoader::Load(const std::string& filePath, vector<string>& outStrings)
 		string cacheStr = "";
 		while (getline(readFile, cacheStr))
 		{
+			if (cacheStr[0] == '#')
+			{
+				continue;	
+			}
 			outStrings.push_back(cacheStr);
 		}
 	}

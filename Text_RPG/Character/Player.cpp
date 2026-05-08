@@ -12,6 +12,9 @@ Player::Player(string name, int hp, int mp, int Attack, int defence)
 	mMP = mp;
 	mAttack = Attack;
 	mDefence = defence;
+
+	mExp = 0;
+	mMaxExp = 0;
 }
 
 Player::~Player()

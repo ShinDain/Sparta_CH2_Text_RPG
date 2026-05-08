@@ -2,8 +2,6 @@
 #include "../CommonInclude.h"
 #include "../System/Data/StringTable.h"
 
-const int SIZE = 4;
-
 class Character
 {
 public:
@@ -22,12 +20,15 @@ public:
 protected:
 	string mName;
 
-	int mLevel;
-	int mMaxHP;
-	int mHP;
-	int mMP;
-	int mAttack;
-	int mDefence;
+	uint32_t mLevel;
+	uint32_t mExp;
+	uint32_t mMaxExp;
+
+	uint32_t mMaxHP;
+	uint32_t mHP;
+	uint32_t mMP;
+	uint32_t mAttack;
+	uint32_t mDefence;
 
 	bool mIsDead;
 

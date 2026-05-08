@@ -1,6 +1,6 @@
 #pragma once
-#include "Character.h"
-#include "../System/Data/MonsterTable.h"
+#include "../Character.h"
+#include "../../System/Data/MonsterTable.h"
 
 class Monster : public Character
 {

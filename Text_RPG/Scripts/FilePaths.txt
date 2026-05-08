@@ -1,3 +1,4 @@
 .\\Scripts\\SystemStrings.txt
 .\\Scripts\\ItemData.txt
 .\\Scripts\\MonsterData.txt
+.\\Scripts\\PlayerLevelTable.txt

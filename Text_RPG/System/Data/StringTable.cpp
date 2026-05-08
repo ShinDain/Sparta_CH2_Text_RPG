@@ -7,37 +7,17 @@ StringTable& StringTable::GetInstance()
 	return instance;
 }
 
-bool StringTable::Load(const string& filePath)
-{
-	vector<string> rawStrings;
-	if (!FileLoader::Load(filePath, rawStrings))
-		return false;
-
-	for (string str : rawStrings)
-	{
-		ParseString(str);
-	}
-
-	return true;
-}
-
 void StringTable::ParseString(const string& inString)
 {
-	if (inString.empty() || inString[0] == '#')
+	if (!IsInvalidString(inString))
 		return;
 
-	size_t pos = inString.find(SPLIT_SYMBOL);
-	if (pos != string::npos)
-	{
-		string key = inString.substr(0, pos);
-		string value = inString.substr(pos + 1);
+	string key, value;
+	SplitString(inString, key, value, DATA_SPLIT_SYMBOL);
 
-		StringHelper::Trim(key);
-		StringHelper::PurifyString(value);
-		StringHelper::ReplaceEscapeChar(value);
+	StringHelper::ReplaceEscapeChar(value);
 
-		mStrings[key] = value;
-	}
+	mStrings[key] = value;
 }
 
 void StringTable::PrintString(const string& key) const

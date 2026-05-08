@@ -129,7 +129,7 @@
     <ClCompile Include="Character\Class\Magician.cpp" />
     <ClCompile Include="Character\Class\Thief.cpp" />
     <ClCompile Include="Character\Class\Warrior.cpp" />
-    <ClCompile Include="Character\Monster.cpp" />
+    <ClCompile Include="Character\Monster\Monster.cpp" />
     <ClCompile Include="Character\Player.cpp" />
     <ClCompile Include="Component\AlchemyComponent.cpp" />
     <ClCompile Include="Component\Component.cpp" />
@@ -140,6 +140,7 @@
     <ClCompile Include="States\State.cpp" />
     <ClCompile Include="System\Data\DataTable.cpp" />
     <ClCompile Include="System\Data\ItemTable.cpp" />
+    <ClCompile Include="System\Data\LevelDataTable.cpp" />
     <ClCompile Include="System\Data\MonsterTable.cpp" />
     <ClCompile Include="System\Data\RecipeTable.cpp" />
     <ClCompile Include="System\Data\StringTable.cpp" />
@@ -153,7 +154,7 @@
     <ClInclude Include="Character\Class\Magician.h" />
     <ClInclude Include="Character\Class\Thief.h" />
     <ClInclude Include="Character\Class\Warrior.h" />
-    <ClInclude Include="Character\Monster.h" />
+    <ClInclude Include="Character\Monster\Monster.h" />
     <ClInclude Include="Character\Player.h" />
     <ClInclude Include="CommonInclude.h" />
     <ClInclude Include="Component\AlchemyComponent.h" />
@@ -164,6 +165,7 @@
     <ClInclude Include="States\State.h" />
     <ClInclude Include="System\Data\DataTable.h" />
     <ClInclude Include="System\Data\ItemTable.h" />
+    <ClInclude Include="System\Data\LevelDataTable.h" />
     <ClInclude Include="System\Data\MonsterTable.h" />
     <ClInclude Include="System\Data\RecipeTable.h" />
     <ClInclude Include="System\Data\StringTable.h" />

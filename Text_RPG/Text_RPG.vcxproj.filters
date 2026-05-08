@@ -72,9 +72,6 @@
     <ClCompile Include="Character\Class\Archer.cpp">
       <Filter>Source\Character\Class</Filter>
     </ClCompile>
-    <ClCompile Include="Character\Monster.cpp">
-      <Filter>Source\Character</Filter>
-    </ClCompile>
     <ClCompile Include="Component\AlchemyComponent.cpp">
       <Filter>Source\Component</Filter>
     </ClCompile>
@@ -99,6 +96,10 @@
     <ClCompile Include="System\Data\RecipeTable.cpp">
       <Filter>Source\System\Data</Filter>
     </ClCompile>
+    <ClCompile Include="Character\Monster\Monster.cpp">
+      <Filter>Source\Character\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="System\Data\LevelDataTable.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game\Game.h">
@@ -140,9 +141,6 @@
     <ClInclude Include="Character\Player.h">
       <Filter>Source\Character</Filter>
     </ClInclude>
-    <ClInclude Include="Character\Monster.h">
-      <Filter>Source\Character</Filter>
-    </ClInclude>
     <ClInclude Include="Component\AlchemyComponent.h">
       <Filter>Source\Component</Filter>
     </ClInclude>
@@ -167,5 +165,9 @@
     <ClInclude Include="System\Data\RecipeTable.h">
       <Filter>Source\System\Data</Filter>
     </ClInclude>
+    <ClInclude Include="Character\Monster\Monster.h">
+      <Filter>Source\Character\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="System\Data\LevelDataTable.h" />
   </ItemGroup>
 </Project>

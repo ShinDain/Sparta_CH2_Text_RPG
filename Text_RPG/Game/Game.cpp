@@ -3,12 +3,13 @@
 #include "../System/Data/StringTable.h"
 #include "../System/Data/ItemTable.h"
 #include "../System/Data/MonsterTable.h"
+#include "../System/Data/LevelDataTable.h"
 #include "../Character/Player.h"
 #include "../Character/Class/Warrior.h"
 #include "../Character/Class/Thief.h"
 #include "../Character/Class/Magician.h"
 #include "../Character/Class/Archer.h"
-#include "../Character/Monster.h"
+#include "../Character/Monster/Monster.h"
 
 #include "../Component/AlchemyComponent.h"
 
@@ -202,6 +203,11 @@ bool Game::InitializeStringTable()
 	{
 		MonsterTable& table = MonsterTable::GetInstance();
 		result = table.Load(filePaths[2]);
+	}
+
+	{
+		LevelDataTable& table = LevelDataTable::GetInstance();
+		result = table.Load(filePaths[3]);
 	}
 
 	return result;

@@ -38,7 +38,7 @@ void Character::RecoveryMP(int amount, string instigatorName)
 
 void Character::Hit(int damage)
 {
-	int resultDamage = max((damage - mDefence), 1);
+	int resultDamage = max((damage - (int)mDefence), 1);
 	int preHP = mHP;
 	int postHP = mHP - resultDamage;
 	mHP = max(postHP, 0);

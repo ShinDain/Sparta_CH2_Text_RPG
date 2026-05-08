@@ -14,15 +14,16 @@ struct ItemData
 	string Name;
 	int Price;
 
-	ItemData()
-		:Index(-1), Name("None"), Price(0) {
-	}
-	ItemData(string name, int price)
-		:Index(-1), Name(name), Price(price) {
+	ItemData() = delete;
+	ItemData(const vector<string>& dataStrings)
+		: Index(-1)
+	{
+		Name = dataStrings[(int)ItemData::DataOrder::Name];
+		Price = stoi(dataStrings[(int)ItemData::DataOrder::Price]);
 	}
 };
 
-class ItemTable : public IDataTable
+class ItemTable : public BaseTable
 {
 private:
 	ItemTable() {};
@@ -32,18 +33,15 @@ public:
 	virtual ~ItemTable();
 
 	static ItemTable& GetInstance();
-	virtual bool Load(const string& filePath) override;
 
 	const ItemData* FindItemDataByName(const string& name) const;
-	const ItemData* FindItemDataByIndex(uint32_t idx) const;
+	const ItemData* FindItemDataByIndex(uint32_t index) const;
 
 protected:
 	virtual void ParseString(const string& inString) override;
-
-	ItemData* ParseItemData(const string& inString);
 private:
-	map<string, uint32_t> mItemDataIndexMap;
-	vector<ItemData*> mItemDataList;
+	map<int, const ItemData*> mIndexMap;
+	map<string, const ItemData*> mNameMap;
 };
 
 inline const ItemData* FindItemDataByName(const string& name)
@@ -51,7 +49,7 @@ inline const ItemData* FindItemDataByName(const string& name)
 	return ItemTable::GetInstance().FindItemDataByName(name);
 }
 
-inline const ItemData* FindItemDataByIndex(uint32_t idx)
+inline const ItemData* FindItemDataByIndex(uint32_t index)
 {
-	return ItemTable::GetInstance().FindItemDataByIndex(idx);
+	return ItemTable::GetInstance().FindItemDataByIndex(index);
 }
