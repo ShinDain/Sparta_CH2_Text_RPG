@@ -15,7 +15,7 @@ struct LevelData
 	uint32_t Level;
 	uint32_t MaxExp;
 	uint32_t IncrementMain;
-	uint32_t IncremantStat;
+	uint32_t IncrementStat;
 
 	LevelData() = delete;
 	LevelData(const vector<string>& dataStrings)
@@ -23,7 +23,7 @@ struct LevelData
 		Level = stoi(dataStrings[(int)LevelData::DataOrder::Level]);
 		MaxExp = stoi(dataStrings[(int)LevelData::DataOrder::MaxExp]);
 		IncrementMain = stoi(dataStrings[(int)LevelData::DataOrder::IncrementMain]);
-		IncremantStat = stoi(dataStrings[(int)LevelData::DataOrder::IncremantStat]);
+		IncrementStat = stoi(dataStrings[(int)LevelData::DataOrder::IncremantStat]);
 	}
 };
 

@@ -10,6 +10,8 @@ Player::Player(string name, int hp, int mp, int Attack, int defence)
 	mName = name;
 	mHP = hp;
 	mMP = mp;
+	mMaxHP = hp;
+	mMaxMP = mp;
 	mAttack = Attack;
 	mDefence = defence;
 
@@ -28,6 +30,9 @@ Player::~Player()
 
 bool Player::Initialize()
 {
+	if (!Character::Initialize())
+		return false;
+
 	AddComponent<InventoryComponent>("Inventory");
 	AddComponent<AlchemyComponent>("Alchemy");
 
@@ -45,10 +50,14 @@ bool Player::Initialize()
 void Player::PrintStats()
 {
 	PrintString("double_line");
-	PrintFormatString("print_stat_1", { {"{Name}", mName} });
+	PrintFormatString("print_player_stat_1", { {"{Name}", mName} });
 	PrintString("double_line");
-	PrintFormatString("print_stat_2", { {"{Name}", mName}, {"{Class}", GetClassName()}, {"{Level}", to_string(mLevel)}});
-	PrintFormatString("print_stat_3", { {"{HP}", to_string(mHP)}, {"{MP}", to_string(mMP)},{"{Attack}", to_string(mAttack)},{"{Defence}", to_string(mDefence)}});
+	PrintFormatString("print_player_stat_2", { {"{Name}", mName}
+	, {"{Class}", GetClassName()}
+	, {"{Level}", to_string(mLevel)}
+	, {"{CurValue}", to_string(mExp) }
+	, {"{MaxValue}", to_string(mMaxExp)} });
+	PrintFormatString("print_player_stat_3", { {"{HP}", to_string(mHP)}, {"{MP}", to_string(mMP)},{"{Attack}", to_string(mAttack)},{"{Defence}", to_string(mDefence)}});
 	PrintString("double_line");
 }
 

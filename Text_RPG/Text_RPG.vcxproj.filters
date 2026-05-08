@@ -99,7 +99,9 @@
     <ClCompile Include="Character\Monster\Monster.cpp">
       <Filter>Source\Character\Monster</Filter>
     </ClCompile>
-    <ClCompile Include="System\Data\LevelDataTable.cpp" />
+    <ClCompile Include="System\Data\LevelDataTable.cpp">
+      <Filter>Source\System\Data</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game\Game.h">
@@ -168,6 +170,8 @@
     <ClInclude Include="Character\Monster\Monster.h">
       <Filter>Source\Character\Monster</Filter>
     </ClInclude>
-    <ClInclude Include="System\Data\LevelDataTable.h" />
+    <ClInclude Include="System\Data\LevelDataTable.h">
+      <Filter>Source\System\Data</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

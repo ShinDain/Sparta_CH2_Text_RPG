@@ -2,6 +2,8 @@
 #include "../Character.h"
 #include "../../System/Data/MonsterTable.h"
 
+const int DEFAULT_REWARD_EXP = 30;
+
 class Monster : public Character
 {
 public:
@@ -13,6 +15,9 @@ public:
 	virtual void PrintStats() override;
 
 	virtual void Attack(class Character* target) override;
+
+	int GetRewardExp(int opponentLevel);
+
 protected:
 	const MonsterData* mData;
 	string mDropItemName;

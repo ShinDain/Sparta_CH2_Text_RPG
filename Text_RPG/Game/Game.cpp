@@ -50,7 +50,7 @@ void Game::RunLoop()
 			ProcessInput_Combat();
 			break;
 		case Game::GameState::CombatEnd:
-			PrintCombatEnd();
+			ProcessCombatEnd();
 			break;
 		case Game::GameState::Alchemy:
 			ProcessInput_Alchemy();
@@ -292,6 +292,7 @@ void Game::ProcessInput_MainMenu()
 	PrintString("menu_select_4");
 	PrintString("menu_select_5");
 	PrintString("menu_select_6");
+	PrintString("menu_select_7");
 	PrintString("double_line");
 	PrintString("input_number");
 
@@ -318,6 +319,9 @@ void Game::ProcessInput_MainMenu()
 		mState = GameState::Alchemy;
 		break;
 	case 4:
+		mPlayer->PrintStats();
+		break;
+	case 5:
 		PrintString("menu_move_stat");
 		mState = GameState::SetStat;
 		break;
@@ -417,17 +421,20 @@ void Game::ProcessInput_Alchemy()
 	}
 }
 
-void Game::PrintCombatEnd()
+void Game::ProcessCombatEnd()
 {
 	if (mPlayer->IsAlive())
 	{
 		PrintString("combat_end_win");
 		string monsterName = mMonster[mCurMonsterIdx]->GetName();
-		string dropItemName = mMonster[mCurMonsterIdx]->GetDropItemName();
-		PrintFormatString("combat_end_result", { {"{MonsterName}",  monsterName}, {"{DropItemName}", dropItemName} });
 
+		string dropItemName = mMonster[mCurMonsterIdx]->GetDropItemName();
 		const ItemData* dropItemData = FindItemDataByName(mMonster[mCurMonsterIdx]->GetDropItemName());
 		mPlayer->AcquireItem(dropItemData, 1);
+		PrintFormatString("combat_end_result_item", { {"{MonsterName}",  monsterName}, {"{DropItemName}", dropItemName} });
+
+		int gainExp = mMonster[mCurMonsterIdx]->GetRewardExp(mPlayer->GetLevel());
+		mPlayer->GainEXP(gainExp);
 	}
 	else
 	{

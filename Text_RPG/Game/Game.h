@@ -34,7 +34,7 @@ private:
 	void ProcessInput_Combat();
 	void ProcessInput_Alchemy();
 
-	void PrintCombatEnd();
+	void ProcessCombatEnd();
 
 	void InitCombat();
 private:

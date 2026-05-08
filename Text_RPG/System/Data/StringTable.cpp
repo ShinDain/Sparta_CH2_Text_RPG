@@ -49,8 +49,7 @@ string StringTable::GetFormatString(const string& key, initializer_list<pair<str
 		size_t pos = 0;
 		const string& placeholder = item.first;
 		const string& value = item.second;
-		pos = formatString.find(placeholder, pos);
-		if (pos != string::npos)
+		while ((pos = formatString.find(placeholder, pos)) != string::npos)
 		{
 			formatString.replace(pos, placeholder.length(), value);
 		}

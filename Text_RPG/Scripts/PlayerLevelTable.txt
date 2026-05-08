@@ -1,6 +1,6 @@
 # level, maxExp, mainStat increment, stat increment
 
-0 ; 1, 10, 10, 5
+0 ; 1, 10, 0, 0
 1 ; 2, 20, 3, 5
 2 ; 3, 30, 3, 5
 3 ; 4, 40, 3, 5
