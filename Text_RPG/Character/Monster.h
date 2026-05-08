@@ -1,7 +1,5 @@
 #pragma once
-#include "../CommonInclude.h"
 #include "Character.h"
-//#include "../System/Data/ItemTable.h"
 #include "../System/Data/MonsterTable.h"
 
 class Monster : public Character

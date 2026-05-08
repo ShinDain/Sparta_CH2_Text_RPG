@@ -151,15 +151,16 @@ bool Game::Initialize()
 
 		const ItemData* HPpotionData = FindItemDataByName("HP포션");
 		const ItemData* MPpotionData = FindItemDataByName("MP포션");
+
+		mPlayer->AcquireItem(HPpotionData, 5);
+		mPlayer->AcquireItem(MPpotionData, 5);
+
 		PrintFormatString("acquire_basic_items",{
 			{"{ItemName1}", HPpotionData->Name},
 			{"{ItemAmount1}", to_string(5)},
 			{"{ItemName2}", MPpotionData->Name},
 			{"{ItemAmount2}", to_string(5)},
 			});
-		
-		mPlayer->AcquireItem(HPpotionData, 5);
-		mPlayer->AcquireItem(MPpotionData, 5);
     }
 
 	const MonsterData* slimeData = FindMonsterDataByName("슬라임");
@@ -208,12 +209,12 @@ bool Game::InitializeStringTable()
 
 void Game::ProcessInput_Village()
 {
-	cout << "\n=========== 스탯 설정 =============\n";
-	cout << "< 캐릭터 강화 >\n";
-	cout << "1. HP UP    2. MP UP    3. 공격력 2배\n";
-	cout << "4. 방어력 2배  5. 현재 능력치  0. 게임 시작\n";
-	cout << "====================================\n";
-	cout << "번호를 선택해주세요 : ";
+	PrintString("stat_setting_1");
+	PrintString("stat_setting_2");
+	PrintString("stat_setting_3");
+	PrintString("stat_setting_4");
+	PrintString("double_line");
+	PrintString("input_number");
 
 	string input = {};
 	cin >> input;
@@ -223,91 +224,99 @@ void Game::ProcessInput_Village()
     switch (select)
     {
     case 0:
-        cout << "게임을 시작합니다.\n";
+		PrintString("game_start");
 		mState = GameState::MainMenu;
         break;
     case 1:
     {
-        bool result = mPlayer->UseItem("HP포션");
-        if (!result)
-            cout << "HP포션이 부족합니다.\n";
+		string itemName = "HP포션";
+        bool result = mPlayer->UseItem(itemName);
+		if (!result)
+		{
+			PrintFormatString("item_use_not_enough", { {"ItemName}", itemName} });
+		}
 		else
 		{
-			mPlayer->RecoveryHP(20);
+			mPlayer->RecoveryHP(20, itemName);
 		}
     }
         break;
-    case 2:
-    {
-        bool result = mPlayer->UseItem("MP포션");
-        if (!result)
-            cout << "MP포션이 부족합니다.\n";		
+	case 2:
+	{
+		string itemName = "MP포션";
+		bool result = mPlayer->UseItem(itemName);
+		if (!result)
+		{
+			PrintFormatString("item_use_not_enough", { {"ItemName}", itemName} });
+		}
 		else
 		{
-			mPlayer->RecoveryMP(20);
+			mPlayer->RecoveryMP(20, itemName);
 		}
     }
         break;
     case 3:
     {
-        mPlayer->SetAttack(mPlayer->GetAttack() * 2);
-        cout << "공격력이 2배가 되어 " << mPlayer->GetAttack() << "이 되었습니다.\n";
+		int resultAttack = mPlayer->GetAttack() * 2;
+        mPlayer->SetAttack(resultAttack);
+		PrintFormatString("stat_setting_attack", { {"{Result}", to_string(resultAttack)} });
     }
         break;
     case 4:
     {
-        mPlayer->SetDefence(mPlayer->GetDefence() * 2);
-        cout << "방어력이 2배가 되어 " << mPlayer->GetDefence() << "이 되었습니다.\n";
+		int resultDefence = mPlayer->GetDefence() * 2;
+        mPlayer->SetDefence(resultDefence);
+		PrintFormatString("stat_setting_defence", { {"{Result}", to_string(resultDefence)} });
     }
         break;
     case 5:
         mPlayer->PrintStats();
         break;
     default:
-        cout << "잘못된 입력입니다.\n";
+		PrintString("invalid_input");
         break;
     }
 }
 
 void Game::ProcessInput_MainMenu()
 {
-	cout << "\n============= 메뉴 ===============\n";
-	cout << "0. 게임 종료\n";
-	cout << "1. 던전 입장\n";
-	cout << "2. 인벤토리\n";
-	cout << "3. 포션 제작소\n";
-	cout << "4. 스탯 설정으로\n";
-	cout << "===================================\n";
-	cout << "번호를 선택해주세요 : ";
+	PrintString("menu_select_1");
+	PrintString("menu_select_2");
+	PrintString("menu_select_3");
+	PrintString("menu_select_4");
+	PrintString("menu_select_5");
+	PrintString("menu_select_6");
+	PrintString("double_line");
+	PrintString("input_number");
 
 	int input = 0;
 	cin >> input;
 	switch (input)
 	{
 	case 0:
-		cout << "게임을 종료합니다.\n";
+		PrintString("game_exit");
 		mIsRunning = false;
 
 		break;
 	case 1:
-		cout << "전투에 돌입합니다.\n";
+		PrintString("combat_start");
 		InitCombat();
-		cout << mMonster[mCurMonsterIdx]->GetName() << "과 만났습니다!\n";
+		PrintFormatString("combat_encounter", { {"{Name}", mMonster[mCurMonsterIdx]->GetName()} });
 		mState = GameState::Combat;
 		break;
 	case 2:
 		mPlayer->PrintInventory();
 		break;
 	case 3:
-		cout << "포션 제작소로 이동합니다.\n";
+		PrintString("menu_move_alchemy");
 		mState = GameState::Alchemy;
 		break;
 	case 4:
-		cout << "스탯 설정으로 돌아갑니다.\n";
+		PrintString("menu_move_stat");
 		mState = GameState::SetStat;
 		break;
 	default:
-		cout << "잘못된 입력입니다. 다시 입력해주세요.\n";
+		PrintString("invalid_input");
 		break;
 	}
 }
@@ -318,13 +327,14 @@ void Game::ProcessInput_Combat()
 
 	while (input != 1)
 	{
-		cout << "--- 플레이어 턴 ---\n";
-		cout << "1. 공격\n";
-		cout << "선택: ";
+		PrintString("combat_player_select_1");
+		PrintString("combat_player_select_2");
+		PrintString("input_number");
+
 		cin >> input;
 		if (input != 1)
 		{
-			cout << "잘못된 입력입니다.\n";
+			PrintString("invalid_input");
 			continue;
 		}
 		mPlayer->Attack(mMonster[mCurMonsterIdx]);
@@ -332,7 +342,7 @@ void Game::ProcessInput_Combat()
 
 	if (mMonster[mCurMonsterIdx]->IsAlive())
 	{
-		cout << "--- 몬스터 턴 ---\n";
+		PrintString("combat_monster");
 		mMonster[mCurMonsterIdx]->Attack(mPlayer);
 	}
 
@@ -344,13 +354,13 @@ void Game::ProcessInput_Combat()
 
 void Game::ProcessInput_Alchemy()
 {
-	cout << "\n=== 포션 제작소 ===\n";
-	cout << "1. 전체 레시피 보기\n";
-	cout << "2. 포션 이름으로 검색\n";
-	cout << "3. 재료로 검색\n";
-	cout << "4. 돌아가기\n";
-	cout << "==================\n";
-	cout << "번호를 선택해주세요 : ";
+	PrintString("alchemy_select_1");
+	PrintString("alchemy_select_2");
+	PrintString("alchemy_select_3");
+	PrintString("alchemy_select_4");
+	PrintString("alchemy_select_5");
+	PrintString("double_line");
+	PrintString("input_number");
 
 	int input = 0;
 	cin >> input;
@@ -370,7 +380,7 @@ void Game::ProcessInput_Alchemy()
 		AlchemyComponent* alchemyComp = mPlayer->FindComponent<AlchemyComponent>("Alchemy");
 		if (alchemyComp)
 		{
-			cout << "검색할 포션 이름: ";
+			PrintString("alchemy_find_by_potion");
 			string inputStr;
 			cin >> inputStr;
 
@@ -383,7 +393,7 @@ void Game::ProcessInput_Alchemy()
 		AlchemyComponent* alchemyComp = mPlayer->FindComponent<AlchemyComponent>("Alchemy");
 		if (alchemyComp)
 		{
-			cout << "검색할 재료 이름: ";
+			PrintString("alchemy_find_by_ingredient");
 			string inputStr;
 			cin >> inputStr;
 
@@ -392,11 +402,11 @@ void Game::ProcessInput_Alchemy()
 	}
 		break;
 	case 4:
-		cout << "메뉴로 돌아갑니다.\n";
+		PrintString("alchemy_move_menu");
 		mState = GameState::MainMenu;
 		break;
 	default:
-		cout << "잘못된 입력입니다. 다시 입력해주세요.\n";
+		PrintString("invalid_input");
 		break;
 	}
 }
@@ -405,16 +415,17 @@ void Game::PrintCombatEnd()
 {
 	if (mPlayer->IsAlive())
 	{
-		cout << "★ 전투 승리!\n";
-		cout << "-> " << mMonster[mCurMonsterIdx]->GetName() << "의 " << mMonster[mCurMonsterIdx]->GetDropItemName() << " 획득!";
+		PrintString("combat_end_win");
+		string monsterName = mMonster[mCurMonsterIdx]->GetName();
+		string dropItemName = mMonster[mCurMonsterIdx]->GetDropItemName();
+		PrintFormatString("combat_end_result", { {"{MonsterName}",  monsterName}, {"{DropItemName}", dropItemName} });
 
 		const ItemData* dropItemData = FindItemDataByName(mMonster[mCurMonsterIdx]->GetDropItemName());
 		mPlayer->AcquireItem(dropItemData, 1);
 	}
 	else
 	{
-		cout << "★ 전투 패배\n";
-		cout << "";
+		PrintString("combat_end_defeat");
 		mIsRunning = false;
 	}
 

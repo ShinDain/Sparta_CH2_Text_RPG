@@ -41,10 +41,12 @@ bool Player::Initialize()
 
 void Player::PrintStats()
 {
-	cout << "\n------------------------------------\n";
-	cout << "닉네임: " << mName << " | 직업: " << GetClassName() << " | Lv." << mLevel;
-	cout << "\nHP: " << mHP << " | MP : " << mMP << " | 공격력: " << mAttack << " | 방어력 : " << mDefence << "\n";
-	cout << "------------------------------------\n";
+	PrintString("double_line");
+	PrintFormatString("print_stat_1", { {"{Name}", mName} });
+	PrintString("double_line");
+	PrintFormatString("print_stat_2", { {"{Name}", mName}, {"{Class}", GetClassName()}, {"{Level}", to_string(mLevel)}});
+	PrintFormatString("print_stat_3", { {"{HP}", to_string(mHP)}, {"{MP}", to_string(mMP)},{"{Attack}", to_string(mAttack)},{"{Defence}", to_string(mDefence)}});
+	PrintString("double_line");
 }
 
 void Player::PrintInventory()

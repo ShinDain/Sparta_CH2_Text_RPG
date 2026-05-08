@@ -14,16 +14,16 @@ bool Thief::Initialize()
 	bool result = Player::Initialize();
 
 	mClass.Job = PlayerJob::Thief;
-	mClass.Name = "도적";
+	mClass.Name = GetString("class_name_thief");
 	mMP += 20;
 	mAttack += 10;
-	cout << "도적으로 전직하였습니다! (MP + 20, 공격력 + 10)\n";
+	PrintString("class_selected_thief");
 
 	return result;
 }
 
 void Thief::Attack(Character* target)
 {
-	cout << "단검으로 찔렀다!\n";
+	PrintString("class_attack_thief");
 	target->Hit(mAttack);
 }

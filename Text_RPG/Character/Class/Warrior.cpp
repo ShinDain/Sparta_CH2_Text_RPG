@@ -14,16 +14,16 @@ bool Warrior::Initialize()
 	bool result = Player::Initialize();
 
 	mClass.Job = PlayerJob::Warrior;
-	mClass.Name = "전사";
+	mClass.Name = GetString("class_name_warrior");
 	mHP += 20;
 	mDefence += 10;
-	cout << "전사로 전직하였습니다! (HP + 20, 방어력 + 10)\n";
+	PrintString("class_selected_warrior");
 
 	return result;
 }
 
 void Warrior::Attack(Character* target)
 {
-	cout << "검으로 내리쳤다!\n";
+	PrintString("class_attack_warrior");
 	target->Hit(mAttack);
 }

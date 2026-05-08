@@ -14,15 +14,15 @@ bool Magician::Initialize()
 	bool result = Player::Initialize();
 
 	mClass.Job = PlayerJob::Magician;
-	mClass.Name = "마법사";
+	mClass.Name = GetString("class_name_magician");
 	mMP += 30;
-	cout << "마법사로 전직하였습니다! (MP + 30)\n";
+	PrintString("class_selected_magician");
 
 	return result;
 }
 
 void Magician::Attack(Character* target)
 {
-	cout << "화염구를 발사했다!\n";
+	PrintString("class_attack_magician");
 	target->Hit(mAttack);
 }

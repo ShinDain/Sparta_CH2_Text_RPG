@@ -1,5 +1,7 @@
 #pragma once
-#include "../CommonInclude.h"
+#include <string>
+
+using namespace std;
 
 class StringHelper
 {

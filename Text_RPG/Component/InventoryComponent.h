@@ -13,9 +13,14 @@ struct InventoryEntry
 		:Instance(nullptr), Amount(0)
 	{}
 
-	void Print()
+	void Print(int index)
 	{
-		cout << Instance->GetName() << " (" << Instance->GetPrice() << "G) " << Amount << "개\n";
+		PrintFormatString("inventory_print_item", {
+			  {"{Index}", to_string(index)}
+			, {"{Name}", Instance->GetName()}
+			, {"{Price}", to_string(Instance->GetPrice())}
+			, {"{Amount}", to_string(Amount)}
+			});
 	}
 };
 

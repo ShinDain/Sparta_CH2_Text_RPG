@@ -1,4 +1,5 @@
 #include "Item.h"
+#include "../System/Data/StringTable.h"
 
 Item::Item(const ItemData* data)
 	: mData(data)
@@ -11,5 +12,6 @@ Item::~Item()
 
 void Item::PrintInfo()
 {
-	cout << GetName() << " (" << GetPrice() << "G)\n";
+	int price = GetPrice();
+	PrintFormatString("print_item_data", { {"{Name}", GetName()}, {"{Price}", to_string(price)} });
 }

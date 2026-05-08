@@ -1,5 +1,4 @@
 #pragma once
-#include "../CommonInclude.h"
 #include "Character.h"
 #include "../Component/Component.h"
 

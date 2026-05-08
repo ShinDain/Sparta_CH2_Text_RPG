@@ -1,5 +1,4 @@
 ﻿#include "Character.h"
-#include <iostream>
 #include "Player.h"
 
 Character::Character()
@@ -20,26 +19,21 @@ bool Character::Initialize()
 
 void Character::PrintStats()
 {
-	cout << "\n====================================\n";
-	cout << mName << " 의 현재 능력치\n";
-	cout << "====================================\n";
-	cout << "HP: " << mHP << "    MP : " << mMP << "\n";
-	cout << "공격력: " << mAttack << "    방어력 : " << mDefence << "\n";
-	cout << "====================================\n";
 }
 
-void Character::RecoveryHP(int amount)
+void Character::RecoveryHP(int amount, string instigatorName)
 {
 	mHP += amount;
 
-	cout << "HP포션을 사용하여, HP를 20만큼 회복하였습니다.\n";
+
+	PrintFormatString("item_use_recovery_HP", { {"{Name}", instigatorName},{"{Value}", to_string(amount)}});
 }
 
-void Character::RecoveryMP(int amount)
+void Character::RecoveryMP(int amount, string instigatorName)
 {
 	mMP += amount;
 
-	cout << "MP포션을 사용하여, MP를 20만큼 회복하였습니다.\n";
+	PrintFormatString("item_use_recovery_MP", { {"{Name}", instigatorName},{"{Value}", to_string(amount)} });
 }
 
 void Character::Hit(int damage)
@@ -49,11 +43,12 @@ void Character::Hit(int damage)
 	int postHP = mHP - resultDamage;
 	mHP = max(postHP, 0);
 
-	cout << mName << "에게 " << resultDamage << "데미지!\n";
-	cout << mName << " HP: " << preHP << " -> " << postHP;
+	PrintFormatString("combat_attack_result_1", { {"{Name}", mName},{"{Result}", to_string(resultDamage)}});
+	PrintFormatString("combat_attack_result_2", { {"{Name}", mName},{"{PreValue}", to_string(preHP)}, {"{PostValue}", to_string(postHP)} });
+
 	if (postHP <= 0)
 	{
-		cout << " (사망)\n";
+		PrintString("state_death");
 		mIsDead = true;
 	}
 	else

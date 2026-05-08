@@ -95,9 +95,8 @@ void InventoryComponent::PrintInventory()
 	for (const auto& pair : mItems)
 	{
 		// +1 하여 1부터 출력한다.
-		cout << (1 + inventoryIdx) << ". ";
 		InventoryEntry* Entry = pair.second;
-		Entry->Print();
+		Entry->Print(inventoryIdx + 1);
 
 		++inventoryIdx;
 	}

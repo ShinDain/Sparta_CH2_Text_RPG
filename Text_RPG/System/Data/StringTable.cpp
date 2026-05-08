@@ -70,7 +70,10 @@ string StringTable::GetFormatString(const string& key, initializer_list<pair<str
 		const string& placeholder = item.first;
 		const string& value = item.second;
 		pos = formatString.find(placeholder, pos);
-		formatString.replace(pos, placeholder.length(), value);
+		if (pos != string::npos)
+		{
+			formatString.replace(pos, placeholder.length(), value);
+		}
 	}
 
 	return formatString;

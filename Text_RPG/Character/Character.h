@@ -1,5 +1,6 @@
 #pragma once
 #include "../CommonInclude.h"
+#include "../System/Data/StringTable.h"
 
 const int SIZE = 4;
 
@@ -12,8 +13,8 @@ public:
 	virtual bool Initialize();
 	virtual void PrintStats();
 
-	void RecoveryHP(int amount);
-	void RecoveryMP(int amount);
+	void RecoveryHP(int amount, string instigatorName);
+	void RecoveryMP(int amount, string instigatorName);
 
 	virtual void Attack(Character* target) = 0;
 	virtual void Hit(int damage);

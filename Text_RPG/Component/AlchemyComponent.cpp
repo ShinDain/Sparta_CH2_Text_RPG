@@ -53,7 +53,7 @@ void AlchemyComponent::FindRecipesByIngredient(string itemName)
 
 	if (!bFound)
 	{
-		cout << "찾을 수 없습니다.\n";
+		PrintString("not_found");
 	}
 }
 
@@ -68,7 +68,7 @@ void AlchemyComponent::FindRecipesByResult(string itemName)
 		}
 	}
 
-	cout << "찾을 수 없습니다.\n";
+	PrintString("not_found");
 }
 
 void AlchemyComponent::PrintAllRecipes()
