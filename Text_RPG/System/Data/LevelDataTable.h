@@ -27,7 +27,7 @@ struct LevelData
 	}
 };
 
-class LevelDataTable : public BaseTable
+class LevelDataTable final : public BaseTable
 {
 private:
 	LevelDataTable() {};

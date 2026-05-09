@@ -1,7 +1,7 @@
 #pragma once
 #include "DataTable.h"
 
-class StringTable : public BaseTable
+class StringTable final : public BaseTable
 {
 private:
 	StringTable() {};

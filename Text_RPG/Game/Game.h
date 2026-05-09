@@ -28,8 +28,11 @@ public:
 
 private:
 	bool InitializeStringTable();
+	bool InitializeStateManager();
 
-	void ProcessInput_Village();
+	void ProcessStateManager();
+
+	void ProcessInput_SetStat();
 	void ProcessInput_MainMenu();
 	void ProcessInput_Combat();
 	void ProcessInput_Alchemy();

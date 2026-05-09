@@ -36,7 +36,6 @@ void Monster::PrintStats()
 void Monster::Attack(Character* target)
 {
 	PrintFormatString("combat_monster_attack", { {"{Name}", mName} });
-	//cout << "\"" << mName << "\"의 몸통박치기!";
 	target->Hit(mAttack);
 }
 

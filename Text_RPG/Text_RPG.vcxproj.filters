@@ -19,9 +19,6 @@
     <Filter Include="Source\Component">
       <UniqueIdentifier>{d256c852-02b2-4916-9d85-a737163a892d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\States">
-      <UniqueIdentifier>{9392e6a4-813b-4436-a9da-a5c014f791e0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source\Character\Class">
       <UniqueIdentifier>{e1079313-3b78-4d8c-8ade-af1ef07615df}</UniqueIdentifier>
     </Filter>
@@ -30,6 +27,12 @@
     </Filter>
     <Filter Include="Source\System\Data">
       <UniqueIdentifier>{1f060df4-50a6-4d63-8d51-98759557d351}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Game\State">
+      <UniqueIdentifier>{0ebddb6b-b1c1-47b7-a20b-5be5dffbbe4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Game\Conditions">
+      <UniqueIdentifier>{1a7c568a-b598-42a4-a828-89039144f189}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -50,12 +53,6 @@
     </ClCompile>
     <ClCompile Include="Component\InventoryComponent.cpp">
       <Filter>Source\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="System\StateManager.cpp">
-      <Filter>Source\System</Filter>
-    </ClCompile>
-    <ClCompile Include="States\State.cpp">
-      <Filter>Source\States</Filter>
     </ClCompile>
     <ClCompile Include="Character\Player.cpp">
       <Filter>Source\Character</Filter>
@@ -102,6 +99,21 @@
     <ClCompile Include="System\Data\LevelDataTable.cpp">
       <Filter>Source\System\Data</Filter>
     </ClCompile>
+    <ClCompile Include="Game\State.cpp">
+      <Filter>Source\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\StateManager.cpp">
+      <Filter>Source\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\State\State_Initialize.cpp">
+      <Filter>Source\Game\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Conditions\AlwaysTrueCondition.cpp">
+      <Filter>Source\Game\Conditions</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\State\State_MainMenu.cpp">
+      <Filter>Source\Game\State</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game\Game.h">
@@ -118,12 +130,6 @@
     </ClInclude>
     <ClInclude Include="Component\InventoryComponent.h">
       <Filter>Source\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="System\StateManager.h">
-      <Filter>Source\System</Filter>
-    </ClInclude>
-    <ClInclude Include="States\State.h">
-      <Filter>Source\States</Filter>
     </ClInclude>
     <ClInclude Include="CommonInclude.h">
       <Filter>Source</Filter>
@@ -172,6 +178,21 @@
     </ClInclude>
     <ClInclude Include="System\Data\LevelDataTable.h">
       <Filter>Source\System\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\State.h">
+      <Filter>Source\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\StateManager.h">
+      <Filter>Source\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\State\State_Initialize.h">
+      <Filter>Source\Game\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Conditions\AlwaysTrueCondition.h">
+      <Filter>Source\Game\Conditions</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\State\State_MainMenu.h">
+      <Filter>Source\Game\State</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

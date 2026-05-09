@@ -24,6 +24,12 @@ bool Archer::Initialize()
 
 void Archer::Attack(Character* target)
 {
-	PrintString("class_attack_archer");
-	target->Hit(mAttack);
+	int attackCnt = 3;
+	int resultDamage = mAttack / attackCnt;
+
+	for (int i = 0; i < attackCnt; ++i)
+	{
+		PrintString("class_attack_archer");
+		target->Hit(resultDamage);
+	}
 }

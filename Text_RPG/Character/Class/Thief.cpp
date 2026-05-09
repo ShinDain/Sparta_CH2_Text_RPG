@@ -24,6 +24,12 @@ bool Thief::Initialize()
 
 void Thief::Attack(Character* target)
 {
-	PrintString("class_attack_thief");
-	target->Hit(mAttack);
+	int attackCnt = 5;
+	int resultDamage = mAttack / attackCnt;
+
+	for (int i = 0; i < attackCnt; ++i)
+	{
+		PrintString("class_attack_thief");
+		target->Hit(resultDamage);
+	}
 }

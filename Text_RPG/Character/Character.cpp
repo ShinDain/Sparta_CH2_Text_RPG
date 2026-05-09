@@ -73,10 +73,6 @@ void Character::Hit(int damage)
 		PrintString("state_death");
 		mIsDead = true;
 	}
-	else
-	{
-		cout << endl;
-	}
 }
 
 bool Character::SetLevelData(int value)

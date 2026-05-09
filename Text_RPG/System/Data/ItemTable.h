@@ -23,7 +23,7 @@ struct ItemData
 	}
 };
 
-class ItemTable : public BaseTable
+class ItemTable final : public BaseTable
 {
 private:
 	ItemTable() {};

@@ -4,6 +4,8 @@
 #include "../System/Data/ItemTable.h"
 #include "../System/Data/MonsterTable.h"
 #include "../System/Data/LevelDataTable.h"
+#include "../Game/StateManager.h"
+
 #include "../Character/Player.h"
 #include "../Character/Class/Warrior.h"
 #include "../Character/Class/Thief.h"
@@ -38,10 +40,12 @@ void Game::RunLoop()
 {
     while (mIsRunning)
     {
+		ProcessStateManager();
+
 		switch (mState)
 		{
 		case Game::GameState::SetStat:
-			ProcessInput_Village();
+			ProcessInput_SetStat();
 			break;
 		case Game::GameState::MainMenu:
 			ProcessInput_MainMenu();
@@ -87,6 +91,9 @@ bool Game::Initialize()
 {
     bool result = true;
 	if (!InitializeStringTable())
+		return false;
+
+	if (!InitializeStateManager())
 		return false;
 
 	PrintString("double_line");
@@ -213,7 +220,17 @@ bool Game::InitializeStringTable()
 	return result;
 }
 
-void Game::ProcessInput_Village()
+bool Game::InitializeStateManager()
+{
+	return StateManager::GetInstance().Initialize();
+}
+
+void Game::ProcessStateManager()
+{
+	StateManager::GetInstance().Process();
+}
+
+void Game::ProcessInput_SetStat()
 {
 	PrintString("stat_setting_1");
 	PrintString("stat_setting_2");

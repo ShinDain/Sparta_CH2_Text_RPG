@@ -24,7 +24,6 @@ Player::~Player()
 	for (Component* component : mComponents)
 	{
 		delete component;
-		component = nullptr;
 	}
 }
 

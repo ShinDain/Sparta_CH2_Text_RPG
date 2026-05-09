@@ -1,5 +1,7 @@
 #pragma once
-class RecipeTable
+#include "DataTable.h"
+
+class RecipeTable final : public BaseTable
 {
 };
 

@@ -38,7 +38,7 @@ struct MonsterData
 	}
 };
 
-class MonsterTable : public BaseTable
+class MonsterTable final : public BaseTable
 {
 private:
 	MonsterTable() {};
