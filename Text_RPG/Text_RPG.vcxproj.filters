@@ -10,9 +10,6 @@
     <Filter Include="Source\Character">
       <UniqueIdentifier>{bd407b88-1c23-4fa8-9212-ca3a9588b296}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\System">
-      <UniqueIdentifier>{eb663d35-009e-4e62-89c3-bf69a9cb5b7c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source\Item">
       <UniqueIdentifier>{7c080e12-11b4-449f-bbf5-10f17f5280f5}</UniqueIdentifier>
     </Filter>
@@ -25,14 +22,20 @@
     <Filter Include="Source\Character\Monster">
       <UniqueIdentifier>{64eadc55-deaa-4137-b56d-8ae9b51291ab}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\System\Data">
-      <UniqueIdentifier>{1f060df4-50a6-4d63-8d51-98759557d351}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source\Game\State">
       <UniqueIdentifier>{0ebddb6b-b1c1-47b7-a20b-5be5dffbbe4b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source\Game\Conditions">
       <UniqueIdentifier>{1a7c568a-b598-42a4-a828-89039144f189}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Data">
+      <UniqueIdentifier>{eb663d35-009e-4e62-89c3-bf69a9cb5b7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Data\Table">
+      <UniqueIdentifier>{1f060df4-50a6-4d63-8d51-98759557d351}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Manager">
+      <UniqueIdentifier>{d7002e4d-1593-4bcf-9caf-3d8eab4f4eaa}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -41,9 +44,6 @@
     </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="System\FileLoader.cpp">
-      <Filter>Source\System</Filter>
     </ClCompile>
     <ClCompile Include="Character\Character.cpp">
       <Filter>Source\Character</Filter>
@@ -75,34 +75,10 @@
     <ClCompile Include="Component\Component.cpp">
       <Filter>Source\Component</Filter>
     </ClCompile>
-    <ClCompile Include="System\Data\StringTable.cpp">
-      <Filter>Source\System\Data</Filter>
-    </ClCompile>
-    <ClCompile Include="System\StringHelper.cpp">
-      <Filter>Source\System</Filter>
-    </ClCompile>
-    <ClCompile Include="System\Data\DataTable.cpp">
-      <Filter>Source\System\Data</Filter>
-    </ClCompile>
-    <ClCompile Include="System\Data\ItemTable.cpp">
-      <Filter>Source\System\Data</Filter>
-    </ClCompile>
-    <ClCompile Include="System\Data\MonsterTable.cpp">
-      <Filter>Source\System\Data</Filter>
-    </ClCompile>
-    <ClCompile Include="System\Data\RecipeTable.cpp">
-      <Filter>Source\System\Data</Filter>
-    </ClCompile>
     <ClCompile Include="Character\Monster\Monster.cpp">
       <Filter>Source\Character\Monster</Filter>
     </ClCompile>
-    <ClCompile Include="System\Data\LevelDataTable.cpp">
-      <Filter>Source\System\Data</Filter>
-    </ClCompile>
     <ClCompile Include="Game\State.cpp">
-      <Filter>Source\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\StateManager.cpp">
       <Filter>Source\Game</Filter>
     </ClCompile>
     <ClCompile Include="Game\State\State_Initialize.cpp">
@@ -114,13 +90,55 @@
     <ClCompile Include="Game\State\State_MainMenu.cpp">
       <Filter>Source\Game\State</Filter>
     </ClCompile>
+    <ClCompile Include="Data\FileLoader.cpp">
+      <Filter>Source\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="Data\StringHelper.cpp">
+      <Filter>Source\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="Data\Table\DataTable.cpp">
+      <Filter>Source\Data\Table</Filter>
+    </ClCompile>
+    <ClCompile Include="Data\Table\ItemTable.cpp">
+      <Filter>Source\Data\Table</Filter>
+    </ClCompile>
+    <ClCompile Include="Data\Table\LevelDataTable.cpp">
+      <Filter>Source\Data\Table</Filter>
+    </ClCompile>
+    <ClCompile Include="Data\Table\MonsterTable.cpp">
+      <Filter>Source\Data\Table</Filter>
+    </ClCompile>
+    <ClCompile Include="Data\Table\RecipeTable.cpp">
+      <Filter>Source\Data\Table</Filter>
+    </ClCompile>
+    <ClCompile Include="Data\Table\StringTable.cpp">
+      <Filter>Source\Data\Table</Filter>
+    </ClCompile>
+    <ClCompile Include="Manager\ObjectManager.cpp">
+      <Filter>Source\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\State\State_SetStat.cpp">
+      <Filter>Source\Game\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\State\State_Combat.cpp">
+      <Filter>Source\Game\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\State\State_Alchemy.cpp">
+      <Filter>Source\Game\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\State\State_CombatEnd.cpp">
+      <Filter>Source\Game\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Conditions\TriggerCondition.cpp">
+      <Filter>Source\Game\Conditions</Filter>
+    </ClCompile>
+    <ClCompile Include="Manager\StateManager.cpp">
+      <Filter>Source\Manager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game\Game.h">
       <Filter>Source\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="System\FileLoader.h">
-      <Filter>Source\System</Filter>
     </ClInclude>
     <ClInclude Include="Character\Character.h">
       <Filter>Source\Character</Filter>
@@ -155,34 +173,10 @@
     <ClInclude Include="Component\Component.h">
       <Filter>Source\Component</Filter>
     </ClInclude>
-    <ClInclude Include="System\Data\StringTable.h">
-      <Filter>Source\System\Data</Filter>
-    </ClInclude>
-    <ClInclude Include="System\StringHelper.h">
-      <Filter>Source\System</Filter>
-    </ClInclude>
-    <ClInclude Include="System\Data\DataTable.h">
-      <Filter>Source\System\Data</Filter>
-    </ClInclude>
-    <ClInclude Include="System\Data\ItemTable.h">
-      <Filter>Source\System\Data</Filter>
-    </ClInclude>
-    <ClInclude Include="System\Data\MonsterTable.h">
-      <Filter>Source\System\Data</Filter>
-    </ClInclude>
-    <ClInclude Include="System\Data\RecipeTable.h">
-      <Filter>Source\System\Data</Filter>
-    </ClInclude>
     <ClInclude Include="Character\Monster\Monster.h">
       <Filter>Source\Character\Monster</Filter>
     </ClInclude>
-    <ClInclude Include="System\Data\LevelDataTable.h">
-      <Filter>Source\System\Data</Filter>
-    </ClInclude>
     <ClInclude Include="Game\State.h">
-      <Filter>Source\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\StateManager.h">
       <Filter>Source\Game</Filter>
     </ClInclude>
     <ClInclude Include="Game\State\State_Initialize.h">
@@ -193,6 +187,51 @@
     </ClInclude>
     <ClInclude Include="Game\State\State_MainMenu.h">
       <Filter>Source\Game\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\FileLoader.h">
+      <Filter>Source\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\StringHelper.h">
+      <Filter>Source\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\Table\DataTable.h">
+      <Filter>Source\Data\Table</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\Table\ItemTable.h">
+      <Filter>Source\Data\Table</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\Table\LevelDataTable.h">
+      <Filter>Source\Data\Table</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\Table\MonsterTable.h">
+      <Filter>Source\Data\Table</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\Table\RecipeTable.h">
+      <Filter>Source\Data\Table</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\Table\StringTable.h">
+      <Filter>Source\Data\Table</Filter>
+    </ClInclude>
+    <ClInclude Include="Manager\ObjectManager.h">
+      <Filter>Source\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\State\State_SetStat.h">
+      <Filter>Source\Game\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\State\State_Combat.h">
+      <Filter>Source\Game\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\State\State_Alchemy.h">
+      <Filter>Source\Game\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\State\State_CombatEnd.h">
+      <Filter>Source\Game\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Conditions\TriggerCondition.h">
+      <Filter>Source\Game\Conditions</Filter>
+    </ClInclude>
+    <ClInclude Include="Manager\StateManager.h">
+      <Filter>Source\Manager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

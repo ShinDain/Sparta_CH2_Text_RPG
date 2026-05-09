@@ -3,7 +3,7 @@
 
 #include "../Component/InventoryComponent.h"
 #include "../Component/AlchemyComponent.h"
-#include "../System/Data/ItemTable.h"
+#include "../Data/Table/ItemTable.h"
 
 Player::Player(string name, int hp, int mp, int Attack, int defence)
 {

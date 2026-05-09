@@ -1,5 +1,5 @@
 #include "Item.h"
-#include "../System/Data/StringTable.h"
+#include "../Data/Table/StringTable.h"
 
 Item::Item(const ItemData* data)
 	: mData(data)

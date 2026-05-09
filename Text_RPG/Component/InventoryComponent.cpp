@@ -1,6 +1,6 @@
 #include "InventoryComponent.h"
 #include "../Item/Item.h"
-#include "../System/Data/ItemTable.h"
+#include "../Data/Table/ItemTable.h"
 
 InventoryComponent::InventoryComponent(Character* owner, string name)
 	:Component(owner, name)

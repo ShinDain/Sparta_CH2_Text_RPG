@@ -1,6 +1,10 @@
 #include "StateManager.h"
-#include "State/State_Initialize.h"
-#include "State/State_MainMenu.h"
+#include "../Game/State/State_Initialize.h"
+#include "../Game/State/State_SetStat.h"
+#include "../Game/State/State_MainMenu.h"
+#include "../Game/State/State_Combat.h"
+#include "../Game/State/State_CombatEnd.h"
+#include "../Game/State/State_Alchemy.h"
 
 StateManager& StateManager::GetInstance()
 {
@@ -38,7 +42,7 @@ void StateManager::Process()
 	mCurrentState->CheckTransition();
 }
 
-void StateManager::ChangeState(StateID nextState)
+bool StateManager::ChangeState(StateID nextState)
 {
 	if (mStates.find(nextState) != mStates.end())
 	{
@@ -46,26 +50,21 @@ void StateManager::ChangeState(StateID nextState)
 			mCurrentState->Exit();
 		mCurrentState = mStates[nextState];
 		mCurrentState->Enter();
+
+		return true;
 	}
+
+	return false;
 }
 
 bool StateManager::InitializeStates()
 {
-	BaseState* initState = new State_Initialize();
-	if (initState)
-	{
-		mStates.emplace(StateID::Initialize, initState);
-	}
-	else
-		return false;
-
-	BaseState* menuState = new State_MainMenu();
-	if (menuState)
-	{
-		mStates.emplace(StateID::MainMenu, menuState);
-	}
-	else
-		return false;
+	AddState<State_Initialize>(StateID::Initialize);
+	AddState<State_MainMenu>(StateID::MainMenu);
+	AddState<State_SetStat>(StateID::SetStat);
+	AddState<State_Combat>(StateID::Combat);
+	AddState<State_CombatEnd>(StateID::CombatEnd);
+	AddState<State_Alchemy>(StateID::Alchemy);
 
 	return true;
 }

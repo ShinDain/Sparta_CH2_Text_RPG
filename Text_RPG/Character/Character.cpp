@@ -1,5 +1,5 @@
 ﻿#include "Character.h"
-#include "../System/Data/LevelDataTable.h"
+#include "../Data/Table/LevelDataTable.h"
 
 bool Character::Initialize()
 {

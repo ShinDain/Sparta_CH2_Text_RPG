@@ -1,6 +1,6 @@
 #pragma once
 #include "../CommonInclude.h"
-#include "State.h"
+#include "../Game/State.h"
 
 class StateManager
 {
@@ -14,9 +14,12 @@ public:
 	bool Initialize();
 	void Process();
 
-	void ChangeState(StateID nextState);
+	bool ChangeState(StateID nextState);
 private:
 	bool InitializeStates();
+
+	template<typename T>
+	void AddState(StateID id);
 private:
 	BaseState* mCurrentState;
 	map<StateID, BaseState*> mStates;
@@ -25,3 +28,15 @@ public:
 	const BaseState* GetCurrnetState() { return mCurrentState; }
 };
 
+template<typename T>
+inline void StateManager::AddState(StateID id)
+{
+	T* menuState = new T();
+
+	if (menuState)
+	{
+		mStates.emplace(id, menuState);
+	}
+
+	return;
+}

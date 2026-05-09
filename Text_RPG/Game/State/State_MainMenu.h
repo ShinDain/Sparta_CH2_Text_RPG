@@ -8,6 +8,5 @@ public:
 protected:
 	virtual void Enter() override;
 	virtual void Process() override;
-	virtual void Exit() override;
 };
 

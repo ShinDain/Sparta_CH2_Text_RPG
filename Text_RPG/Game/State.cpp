@@ -1,5 +1,5 @@
 #include "State.h"
-#include "StateManager.h"
+#include "../Manager/StateManager.h"
 
 Transition::Transition(Condition* condition, StateID nextState)
 	: mCondition(condition), mNextStateID(nextState)
@@ -11,7 +11,12 @@ Transition::~Transition()
 	delete mCondition;
 }
 
-bool Transition::CanTransition()
+void Transition::InitTransition()
+{
+	mCondition->Init();
+}
+
+bool Transition::CanTransition() const
 {
 	if (!mCondition)
 		return false;
@@ -21,29 +26,58 @@ bool Transition::CanTransition()
 
 BaseState::BaseState()
 {
-	mTransition = nullptr;
+	mTransitions = {};
 }
 
 BaseState::~BaseState()
 {
-	delete mTransition;
+	for (const auto& pair : mTransitions)
+	{
+		delete pair.second;
+	}
 }
 
-bool BaseState::CanTransition()
+StateID BaseState::CanTransition() const
 {
-	if (!mTransition)
-		return false;
-	
-	return mTransition->CanTransition();
+	for (const auto& pair : mTransitions)
+	{
+		Transition* transition = pair.second;
+
+		if (!transition)
+			continue;
+
+		if (transition->CanTransition())
+		{
+			return pair.first;
+		}
+	}
+
+	return StateID::End;
 }
 
 bool BaseState::CheckTransition()
 {
-	if (CanTransition())
+	StateID nextState = StateID::End;
+	if ((nextState = CanTransition()) != StateID::End)
 	{
-		StateManager::GetInstance().ChangeState(StateID::MainMenu);
-
-		return true;
+		return StateManager::GetInstance().ChangeState(nextState);
 	}
 	return false;
+}
+
+void BaseState::Exit()
+{
+	InitTransition();
+}
+
+void BaseState::InitTransition()
+{
+	for (auto& pair : mTransitions)
+	{
+		Transition* transition = pair.second;
+		if (transition)
+		{
+			transition->InitTransition();
+		}
+	}
 }

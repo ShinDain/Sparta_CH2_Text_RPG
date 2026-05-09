@@ -1,6 +1,6 @@
 #pragma once
 #include "../CommonInclude.h"
-#include "../System/Data/ItemTable.h"
+#include "../Data/Table/ItemTable.h"
 
 class Character;
 

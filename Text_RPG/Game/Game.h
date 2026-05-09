@@ -5,21 +5,12 @@
 
 class Game
 {
-public :
-	enum class GameState
-	{
-		Create,
-		SetStat,
-		MainMenu,
-		Combat,
-		CombatEnd,
-		Alchemy,
-		None,
-	};
-
-public:
+private:
 	Game();
+public:
 	virtual ~Game();
+
+	static Game& GetInstance();
 
 	bool Initialize();
 	
@@ -31,23 +22,7 @@ private:
 	bool InitializeStateManager();
 
 	void ProcessStateManager();
-
-	void ProcessInput_SetStat();
-	void ProcessInput_MainMenu();
-	void ProcessInput_Combat();
-	void ProcessInput_Alchemy();
-
-	void ProcessCombatEnd();
-
-	void InitCombat();
 private:
 	bool mIsRunning;
-
-	GameState mState;
-
-	class Player* mPlayer;
-	class Monster* mMonster[2];
-
-	int mCurMonsterIdx;
 };
 

@@ -1,6 +1,6 @@
 #pragma once
 #include "../Character.h"
-#include "../../System/Data/MonsterTable.h"
+#include "../../Data/Table/MonsterTable.h"
 
 const int DEFAULT_REWARD_EXP = 30;
 

@@ -17,6 +17,8 @@ enum class StateID
 class Condition
 {
 public:
+	virtual void Init() {};
+	virtual void OnNotify() {};
 	virtual bool Check() = 0;
 };
 
@@ -27,8 +29,13 @@ public:
 	Transition(Condition* condition, StateID nextState);
 	virtual ~Transition();
 
+	void InitTransition();
+
 	StateID GetNextStateID() { return mNextStateID; }
-	bool CanTransition();
+	bool CanTransition() const;
+
+	void Notify() { mCondition->OnNotify(); }
+	Condition* GetCondition() { return mCondition; }
 protected:
 	Condition* mCondition;
 	StateID mNextStateID;
@@ -36,8 +43,6 @@ protected:
 
 class IState
 {
-	friend StateManager;
-
 protected:
 	virtual void Enter() = 0;
 	virtual void Process() = 0;
@@ -46,14 +51,33 @@ protected:
 
 class BaseState : public IState
 {
+	friend StateManager;
+
 protected:
 	BaseState();
 public:
 	virtual ~BaseState();
 
-	bool CanTransition();
+	StateID CanTransition() const;
 	bool CheckTransition();
 protected:
+	virtual void Exit() override;
+	void InitTransition();
+
+	template<typename T>
+	void AddTransition(StateID state);
+protected:
 	string mName;
-	Transition* mTransition;
+	map<StateID, Transition*> mTransitions;
+public:
+	string GetName() { return mName; }
 };
+
+template<typename T>
+inline void BaseState::AddTransition(StateID state)
+{
+	StateID destState = state;
+	T* condition = new T();
+	Transition* transition = new Transition(condition, destState);
+	mTransitions.emplace(destState, transition);
+}
