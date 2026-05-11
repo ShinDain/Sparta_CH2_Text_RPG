@@ -2,6 +2,9 @@
 #include "../CommonInclude.h"
 #include "../Character/Character.h"
 
+class Monster;
+class Player;
+
 class ObjectManager
 {
 private:
@@ -14,11 +17,16 @@ public:
 	T* CreateObject(Args&&... args);
 
 	// 테스트를 위한 임시 변수
-	Character* mPlayer;
-	Character* mMonster1;
-	Character* mMonster2;
-	bool mCurMonster = true;
+	Player* mPlayer;
+	Monster* mMonster1;
+	Monster* mMonster2;
+	Monster* mMonster3;
+	Monster* mMonster4;
+	int mCurMonster = 0;
 	//
+
+	Monster* GetCurrentMonster();
+	int NextMonster();
 
 private:
 	vector<Character*> mObjects;

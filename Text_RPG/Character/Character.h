@@ -21,7 +21,7 @@ public:
 	virtual void Attack(Character* target) = 0;
 	virtual void Hit(int damage);
 protected:
-	bool SetLevelData(int value);
+	bool SetLevelData(int value, bool IsInit = false);
 protected:
 	string mName;
 

@@ -17,16 +17,13 @@ State_CombatEnd::State_CombatEnd()
 
 void State_CombatEnd::Enter()
 {
+	Game::GetInstance().SetPotionStock();
 }
 
 void State_CombatEnd::Process()
 {
-	Player* player = dynamic_cast<Player*>(ObjectManager::GetInstance().mPlayer);
-	Monster* curMonster = nullptr;
-	if (ObjectManager::GetInstance().mCurMonster)
-		curMonster = dynamic_cast<Monster*>(ObjectManager::GetInstance().mMonster1);
-	else
-		curMonster = dynamic_cast<Monster*>(ObjectManager::GetInstance().mMonster2);
+	Player* player = ObjectManager::GetInstance().mPlayer;
+	Monster* curMonster = ObjectManager::GetInstance().GetCurrentMonster();
 
 	if (player->IsAlive())
 	{
@@ -34,8 +31,8 @@ void State_CombatEnd::Process()
 		string monsterName = curMonster->GetName();
 
 		string dropItemName = curMonster->GetDropItemName();
-		const ItemData* dropItemData = FindItemDataByName(curMonster->GetDropItemName());
-		player->AcquireItem(dropItemData, 1);
+		
+		player->AcquireItem(dropItemName, 1);
 		PrintFormatString("combat_end_result_item", { {"{MonsterName}",  monsterName}, {"{DropItemName}", dropItemName} });
 
 		int gainExp = curMonster->GetRewardExp(player->GetLevel());
@@ -47,5 +44,11 @@ void State_CombatEnd::Process()
 		Game::GetInstance().ShutDown();
 	}
 
-	ObjectManager::GetInstance().mCurMonster = !ObjectManager::GetInstance().mCurMonster;
+	int nextMonsterIdx = ObjectManager::GetInstance().NextMonster();
+
+	if (nextMonsterIdx == 3)
+	{
+		cout << "보스방이 개방되었습니다. 준비를 확실히 하세요." << endl;
+		cout << "보스 드래곤 등장! (HP 200, 공격력 60, 방어력 20)" << endl;
+	}
 }

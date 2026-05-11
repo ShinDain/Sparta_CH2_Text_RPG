@@ -54,9 +54,9 @@ bool InventoryComponent::UseItem(string itemName)
 	return false;
 }
 
-void InventoryComponent::AddItem(const ItemData* data, int amount)
+void InventoryComponent::AddItem(const string& itemName, int amount)
 {
-	InventoryEntry* inventoryEntry = FindItem(data->Name);
+	InventoryEntry* inventoryEntry = FindItem(itemName);
 
 	if (inventoryEntry)
 	{
@@ -64,7 +64,7 @@ void InventoryComponent::AddItem(const ItemData* data, int amount)
 	}
 	else
 	{
-		InventoryEntry* newEntry = InitItemEntry(data);
+		InventoryEntry* newEntry = InitItemEntry(itemName);
 		if (newEntry)
 		{
 			newEntry->Amount += amount;
@@ -74,9 +74,10 @@ void InventoryComponent::AddItem(const ItemData* data, int amount)
 	mEntryCnt = mItems.size();
 }
 
-InventoryEntry* InventoryComponent::InitItemEntry(const ItemData* data)
+InventoryEntry* InventoryComponent::InitItemEntry(const string& itemName)
 {
-	string itemName = data->Name;
+	const ItemData* data = FindItemDataByName(itemName);
+
 	int itemPrice = data->Price;
 
 	InventoryEntry* itemEntry = new InventoryEntry();

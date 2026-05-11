@@ -15,11 +15,7 @@ State_Combat::State_Combat()
 void State_Combat::Enter()
 {
 	PrintString("combat_start");
-	Character* curMonster = nullptr;
-	if (ObjectManager::GetInstance().mCurMonster)
-		curMonster = ObjectManager::GetInstance().mMonster1;
-	else
-		curMonster = ObjectManager::GetInstance().mMonster2;
+	Monster* curMonster = ObjectManager::GetInstance().GetCurrentMonster();
 	
 	if (curMonster)
 	{
@@ -32,12 +28,8 @@ void State_Combat::Process()
 {
 	int input = -1;
 
-	Player* player = dynamic_cast<Player*>(ObjectManager::GetInstance().mPlayer);
-	Monster* curMonster = nullptr;
-	if (ObjectManager::GetInstance().mCurMonster)
-		curMonster = dynamic_cast<Monster*>(ObjectManager::GetInstance().mMonster1);
-	else
-		curMonster = dynamic_cast<Monster*>(ObjectManager::GetInstance().mMonster2);
+	Player* player = ObjectManager::GetInstance().mPlayer;
+	Monster* curMonster = ObjectManager::GetInstance().GetCurrentMonster();
 
 	bool bAction = true;
 	while (bAction)

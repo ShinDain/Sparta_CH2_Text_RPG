@@ -26,4 +26,18 @@ private:
 	void ProcessStateManager();
 private:
 	bool mIsRunning;
+	bool mGameEnd;
+public:
+	bool GetGameEnd() {	return mGameEnd;}
+	void SetGameEnd(bool value) { mGameEnd = value; }
+
+	map<string, int> mPotionStock;
+	int GetPotionStock(const string& name) { return mPotionStock[name]; }
+	void SetPotionStock()
+	{
+		for (auto& pair : mPotionStock)
+		{
+			pair.second = 3;
+		}
+	}
 };

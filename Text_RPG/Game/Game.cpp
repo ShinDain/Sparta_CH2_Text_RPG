@@ -17,6 +17,9 @@ const string INIT_FILE_PATH = ".\\Scripts\\FilePaths.txt";
 Game::Game()
 {
     mIsRunning = false;
+	mPotionStock["HP포션"] = 3;
+	mPotionStock["MP포션"] = 3;
+	mGameEnd = false;
 }
 
 Game::~Game()
@@ -34,6 +37,12 @@ void Game::RunLoop()
     while (mIsRunning)
     {
 		ProcessStateManager();
+
+		if (mGameEnd)
+		{
+			PrintString("game_clear");
+			break;
+		}
     }
 }
 

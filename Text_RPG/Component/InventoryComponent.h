@@ -35,9 +35,9 @@ public:
 
 	InventoryEntry* FindItem(string itemName);
 	bool UseItem(string itemName);
-	void AddItem(const ItemData* data, int amount);
+	void AddItem(const string& itemName, int amount);
 
-	InventoryEntry* InitItemEntry(const ItemData* data);
+	InventoryEntry* InitItemEntry(const string& itemName);
 
 	void PrintInventory();
 private:

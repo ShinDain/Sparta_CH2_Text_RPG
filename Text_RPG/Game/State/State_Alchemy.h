@@ -8,4 +8,7 @@ public:
 protected:
 	virtual void Enter() override;
 	virtual void Process() override;
+
+private:
+	void ProcessAid();
 };

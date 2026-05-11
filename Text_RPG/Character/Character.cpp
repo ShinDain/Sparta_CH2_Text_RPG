@@ -4,7 +4,7 @@
 bool Character::Initialize()
 {
 	bool result = true;
-	SetLevelData(mLevel);
+	SetLevelData(mLevel, true);
 
 	mIsDead = false;
 	mHP = mMaxHP;
@@ -81,7 +81,7 @@ void Character::Hit(int damage)
 	}
 }
 
-bool Character::SetLevelData(int value)
+bool Character::SetLevelData(int value, bool IsInit)
 {
 	int targetLevel = value;
 	if (targetLevel < 1)
@@ -92,6 +92,13 @@ bool Character::SetLevelData(int value)
 	const LevelData* data = GetLevelData(targetLevel);
 	if (data != nullptr)
 	{
+		if (IsInit)
+		{
+			mLevel = data->Level;
+			mMaxExp = data->MaxExp;
+			return true;
+		}
+
 		mExp -= mMaxExp;
 
 		mLevel = data->Level;

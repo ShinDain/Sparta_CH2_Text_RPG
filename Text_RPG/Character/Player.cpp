@@ -69,12 +69,12 @@ void Player::PrintInventory()
 	}
 }
 
-void Player::AcquireItem(const ItemData* data, int amount)
+void Player::AcquireItem(const string& itemName, int amount)
 {
 	InventoryComponent* inventoryComp = FindComponent<InventoryComponent>("Inventory");
 	if (inventoryComp)
 	{
-		inventoryComp->AddItem(data, amount);
+		inventoryComp->AddItem(itemName, amount);
 	}
 }
 
@@ -83,7 +83,16 @@ bool Player::UseItem(string itemName)
 	InventoryComponent* inventoryComp = FindComponent<InventoryComponent>("Inventory");
 	if (inventoryComp)
 	{
-		return inventoryComp->UseItem(itemName);
+		if (inventoryComp->UseItem(itemName))
+		{
+			if (itemName == "HP포션"
+				|| itemName == "MP포션")
+			{
+				AcquireItem("공병", 1);
+			}
+
+			return true;
+		}
 	}
 	return false;
 }

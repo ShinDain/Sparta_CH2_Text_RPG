@@ -30,7 +30,7 @@ void State_SetStat::Process()
 
 	int select = stoi(input);
 
-	Player* player = dynamic_cast<Player*>(ObjectManager::GetInstance().mPlayer);
+	Player* player = ObjectManager::GetInstance().mPlayer;
 
 	switch (select)
 	{
@@ -46,7 +46,7 @@ void State_SetStat::Process()
 		bool result = player->UseItem(itemName);
 		if (!result)
 		{
-			PrintFormatString("item_use_not_enough", { {"ItemName}", itemName} });
+			PrintFormatString("item_use_not_enough", { {"{ItemName}", itemName} });
 		}
 		else
 		{
@@ -60,7 +60,7 @@ void State_SetStat::Process()
 		bool result = player->UseItem(itemName);
 		if (!result)
 		{
-			PrintFormatString("item_use_not_enough", { {"ItemName}", itemName} });
+			PrintFormatString("item_use_not_enough", { {"{ItemName}", itemName} });
 		}
 		else
 		{

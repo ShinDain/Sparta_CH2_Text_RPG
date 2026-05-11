@@ -35,7 +35,7 @@ public:
 	virtual bool Initialize() override;
 	virtual void PrintStats() override;
 
-	void AcquireItem(const ItemData* data, int amount);
+	void AcquireItem(const string& itemName, int amount);
 	bool UseItem(string itemName);
 
 	void PrintInventory();
