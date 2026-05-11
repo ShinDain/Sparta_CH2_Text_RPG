@@ -52,7 +52,6 @@ bool Game::Initialize()
 		return false;
     
     mIsRunning = result;
-	//mState = GameState::SetStat;
     return result;
 }
 

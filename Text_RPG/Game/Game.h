@@ -7,6 +7,8 @@ class Game
 {
 private:
 	Game();
+	Game(const Game& rhs) = delete;
+	Game& operator=(const Game& rhs) = delete;
 public:
 	virtual ~Game();
 
@@ -25,4 +27,3 @@ private:
 private:
 	bool mIsRunning;
 };
-

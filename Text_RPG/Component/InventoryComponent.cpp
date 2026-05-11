@@ -5,6 +5,7 @@
 InventoryComponent::InventoryComponent(Character* owner, string name)
 	:Component(owner, name)
 {
+	mEntryCnt = 0;
 }
 
 InventoryComponent::~InventoryComponent()
@@ -69,6 +70,8 @@ void InventoryComponent::AddItem(const ItemData* data, int amount)
 			newEntry->Amount += amount;
 		}
 	}
+
+	mEntryCnt = mItems.size();
 }
 
 InventoryEntry* InventoryComponent::InitItemEntry(const ItemData* data)

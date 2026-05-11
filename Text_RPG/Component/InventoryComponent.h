@@ -41,6 +41,7 @@ public:
 
 	void PrintInventory();
 private:
+	int mEntryCnt;
 	map<string, InventoryEntry*> mItems;
 public:
 	int GetItemAmount(string itemName);

@@ -15,14 +15,20 @@ bool Character::Initialize()
 
 void Character::RecoveryHP(int amount, string instigatorName)
 {
+	int preValue = mHP;
+	int postValue = mHP + amount;
 	mHP += amount;
-	PrintFormatString("item_use_recovery_HP", { {"{Name}", instigatorName},{"{Value}", to_string(amount)}});
+	PrintFormatString("item_use_recovery_HP", { {"{Name}", instigatorName},{"{Value}", to_string(amount)}
+		,{"{PreValue}", to_string(preValue)},{"{PostValue}", to_string(postValue)}});
 }
 
 void Character::RecoveryMP(int amount, string instigatorName)
 {
+	int preValue = mMP;
+	int postValue = mMP + amount;
 	mMP += amount;
-	PrintFormatString("item_use_recovery_MP", { {"{Name}", instigatorName},{"{Value}", to_string(amount)} });
+	PrintFormatString("item_use_recovery_MP", { {"{Name}", instigatorName},{"{Value}", to_string(amount)}
+		,{"{PreValue}", to_string(preValue)},{"{PostValue}", to_string(postValue)} });
 }
 
 void Character::GainEXP(int value)
